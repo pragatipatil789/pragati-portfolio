@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const achievements = [
-  { value: 10, prefix: "$", suffix: "M+", label: "Asset Valuation Assessed" },
+  { value: 75, prefix: "$", suffix: "M+", label: "Asset Valuation Assessed" },
   { value: 550, suffix: "+", label: "Processes Structured" },
   { value: 200, suffix: "+", label: "Daily Active Users Scaled" },
   { value: 10, suffix: "%", label: "Retention Uplift Achieved" },

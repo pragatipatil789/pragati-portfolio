@@ -9,11 +9,11 @@ const experiences = [
     company: "KPMG",
     period: "Apr 2026 – May 2026",
     achievements: [
-      "Assessed infrastructure assets valued at $10M+ across IRR, NPV, and payback for go/no-go decisions.",
+      "Assessed infrastructure assets across IRR, NPV, and payback period benchmarks to deliver go/no-go investment decisions.",
       "Analyzed 25-year regional demand across growth and adoption scenarios for commercial viability.",
       "Structured 550+ cross-functional processes into a comprehensive 6-category workflow taxonomy."
     ],
-    metric: "$10M+ Valuation",
+    metric: "25yr Projections",
     color: "from-brand-purple to-brand-blue"
   },
   {

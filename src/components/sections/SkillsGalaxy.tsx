@@ -4,13 +4,16 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const skills = [
-  { name: "Product Strategy", radius: 120, angle: 0, speed: 15, size: "text-lg md:text-xl", color: "text-brand-cyan", bg: "bg-brand-cyan/10" },
-  { name: "Generative AI", radius: 180, angle: 45, speed: -20, size: "text-base md:text-lg", color: "text-brand-purple", bg: "bg-brand-purple/10" },
-  { name: "Power BI", radius: 150, angle: 90, speed: 25, size: "text-sm md:text-base", color: "text-brand-blue", bg: "bg-brand-blue/10" },
-  { name: "Stakeholder Management", radius: 220, angle: 180, speed: -18, size: "text-base", color: "text-white", bg: "bg-white/10" },
-  { name: "Digital Transformation", radius: 260, angle: 270, speed: 22, size: "text-lg", color: "text-brand-cyan", bg: "bg-brand-cyan/10" },
-  { name: "Problem Solving", radius: 200, angle: 315, speed: -25, size: "text-sm", color: "text-gray-300", bg: "bg-gray-300/10" },
-  { name: "Team Leader", radius: 280, angle: 120, speed: 30, size: "text-base", color: "text-brand-purple", bg: "bg-brand-purple/10" },
+  { name: "Strategic Advisory", radius: 120, angle: 0, speed: 15, size: "text-base md:text-lg", color: "text-brand-cyan", bg: "bg-brand-cyan/10" },
+  { name: "Business Case Development", radius: 185, angle: 40, speed: -20, size: "text-sm md:text-base", color: "text-brand-purple", bg: "bg-brand-purple/10" },
+  { name: "Market Analysis", radius: 150, angle: 90, speed: 25, size: "text-sm md:text-base", color: "text-brand-blue", bg: "bg-brand-blue/10" },
+  { name: "Stakeholder Management", radius: 220, angle: 170, speed: -18, size: "text-base", color: "text-white", bg: "bg-white/10" },
+  { name: "Change Management", radius: 260, angle: 250, speed: 22, size: "text-sm md:text-base", color: "text-brand-cyan", bg: "bg-brand-cyan/10" },
+  { name: "Financial Modeling", radius: 200, angle: 310, speed: -25, size: "text-sm", color: "text-gray-300", bg: "bg-gray-300/10" },
+  { name: "Process Optimization", radius: 280, angle: 120, speed: 30, size: "text-sm md:text-base", color: "text-brand-purple", bg: "bg-brand-purple/10" },
+  { name: "Risk Assessment", radius: 160, angle: 210, speed: -22, size: "text-sm", color: "text-brand-blue", bg: "bg-brand-blue/10" },
+  { name: "Digital Transformation", radius: 240, angle: 330, speed: 18, size: "text-sm md:text-base", color: "text-brand-cyan", bg: "bg-brand-cyan/10" },
+  { name: "Executive Presentations", radius: 300, angle: 70, speed: -28, size: "text-sm", color: "text-white", bg: "bg-white/10" },
 ];
 
 export default function SkillsGalaxy() {
@@ -35,20 +38,20 @@ export default function SkillsGalaxy() {
           The <span className="text-brand-cyan">Constellation.</span>
         </h2>
         <p className="text-xl text-gray-400 font-sans max-w-xl mx-auto">
-          A dynamic ecosystem of skills driving continuous innovation.
+          A dynamic ecosystem of skills powering strategy, product, and consulting excellence.
         </p>
       </motion.div>
 
       <div className="relative w-full max-w-3xl aspect-square mt-20 flex items-center justify-center">
         {/* Core Center */}
-        <div className="absolute w-32 h-32 rounded-full bg-brand-navy border border-white/20 flex items-center justify-center shadow-[0_0_50px_rgba(76,201,240,0.3)] z-20 backdrop-blur-md">
-          <span className="font-display font-bold text-center leading-tight bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent">
-            Product<br/>Ecosystem
+        <div className="absolute w-36 h-36 rounded-full bg-brand-navy border border-white/20 flex items-center justify-center shadow-[0_0_50px_rgba(76,201,240,0.3)] z-20 backdrop-blur-md">
+          <span className="font-display font-bold text-center text-sm leading-tight bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent px-2">
+            Strategy<br/>×<br/>Product
           </span>
         </div>
 
         {/* Orbit Rings */}
-        {[120, 180, 220, 260, 280].map((radius, i) => (
+        {[120, 160, 200, 240, 280, 300].map((radius, i) => (
           <div 
             key={i} 
             className="absolute rounded-full border border-white/5"

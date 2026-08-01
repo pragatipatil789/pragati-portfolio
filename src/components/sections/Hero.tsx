@@ -30,7 +30,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Product thinker and UX designer bridging the gap between business strategy and intelligent products. From driving $10M+ valuations to crafting AI-driven EdTech, I build things that matter.
+            Strategy-driven. Design-led. Results-obsessed. I translate complex business challenges into product-led solutions — where consulting rigor meets human-centered precision to move the needle.
           </motion.p>
           
           <motion.div
@@ -54,9 +54,9 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Portrait Image */}
+        {/* Portrait Image — smaller size */}
         <motion.div
-          className="relative h-[500px] w-full max-w-md mx-auto"
+          className="relative h-[360px] w-full max-w-xs mx-auto"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}

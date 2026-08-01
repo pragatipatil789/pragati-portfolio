@@ -26,10 +26,10 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-5xl md:text-7xl font-display font-bold mb-6">
-            Let's build something <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">extraordinary.</span>
+            Let&apos;s build something <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">extraordinary.</span>
           </h2>
           <p className="text-xl text-gray-400 font-sans mb-12 max-w-2xl mx-auto">
-            Currently open to new opportunities in Product Management and UX Strategy. Let's connect and discuss how I can bring value to your team.
+            Actively seeking high-impact consulting and product strategy roles where I can drive transformation, lead cross-functional engagements, and deliver outcomes that shape markets.
           </p>
         </motion.div>
 
@@ -40,17 +40,17 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <a href="mailto:pragati@example.com" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-white text-brand-black rounded-full font-medium hover:scale-105 transition-transform">
+          <a href="mailto:pragatirpatil218@gmail.com" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-white text-brand-black rounded-full font-medium hover:scale-105 transition-transform">
             <Mail size={20} />
             Send an Email
           </a>
           
-          <a href="https://linkedin.com/in/pragatipatil" target="_blank" rel="noreferrer" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-[#0077b5] text-white rounded-full font-medium hover:bg-[#005582] transition-colors">
+          <a href="https://www.linkedin.com/in/pragati-patil-b620821b1/" target="_blank" rel="noreferrer" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-[#0077b5] text-white rounded-full font-medium hover:bg-[#005582] transition-colors">
             <Link size={20} />
             LinkedIn
           </a>
           
-          <a href="#" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 border border-white/20 text-white rounded-full font-medium hover:bg-white/5 transition-colors">
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 border border-white/20 text-white rounded-full font-medium hover:bg-white/5 transition-colors">
             <FileText size={20} />
             View Full Resume
           </a>
