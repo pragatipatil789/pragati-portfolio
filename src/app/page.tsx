@@ -9,6 +9,7 @@ import Experience from "@/components/sections/Experience";
 import SkillsGalaxy from "@/components/sections/SkillsGalaxy";
 import Achievements from "@/components/sections/Achievements";
 import Education from "@/components/sections/Education";
+import CaseCompetitions from "@/components/sections/CaseCompetitions";
 import Philosophy from "@/components/sections/Philosophy";
 import Contact from "@/components/sections/Contact";
 
@@ -24,10 +25,13 @@ export default function Home() {
           <CustomCursor />
           <Hero />
           <About />
-          <Experience />
+          <section id="journey">
+            <Experience />
+          </section>
           <SkillsGalaxy />
           <Achievements />
           <Education />
+          <CaseCompetitions />
           <Philosophy />
           <Contact />
         </>

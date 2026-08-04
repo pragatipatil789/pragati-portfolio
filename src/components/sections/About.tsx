@@ -1,12 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const cards = [
   {
     title: "Who I Am",
     illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-14 h-14">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
         <circle cx="32" cy="32" r="30" stroke="#4CC9F0" strokeWidth="1.5" strokeDasharray="4 3"/>
         <circle cx="32" cy="32" r="4" fill="#4CC9F0"/>
         <line x1="32" y1="32" x2="32" y2="8" stroke="#4CC9F0" strokeWidth="1.5" strokeLinecap="round"/>
@@ -18,11 +20,13 @@ const cards = [
       </svg>
     ),
     description: "A strategic thinker and product leader operating at the intersection of consulting rigor and design intuition — translating ambiguity into structured, actionable frameworks that drive organizational clarity.",
+    accent: "from-brand-cyan to-brand-blue",
+    tag: "Identity",
   },
   {
     title: "My Journey",
     illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-14 h-14">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
         <path d="M8 48 Q20 20 32 28 Q44 36 56 8" stroke="#4CC9F0" strokeWidth="2" strokeLinecap="round" fill="none"/>
         <circle cx="8" cy="48" r="4" fill="#7209B7"/>
         <circle cx="32" cy="28" r="4" fill="#4361EE"/>
@@ -33,11 +37,13 @@ const cards = [
       </svg>
     ),
     description: "From structuring enterprise-level workflows at KPMG to scaling EdTech products at Paraheights — every engagement has sharpened my ability to deliver measurable results under real-world complexity.",
+    accent: "from-brand-purple to-brand-cyan",
+    tag: "Experience",
   },
   {
     title: "My Passion",
     illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-14 h-14">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
         <rect x="16" y="8" width="32" height="36" rx="4" stroke="#4CC9F0" strokeWidth="1.5"/>
         <line x1="24" y1="20" x2="40" y2="20" stroke="#4CC9F0" strokeWidth="1.5" strokeLinecap="round"/>
         <line x1="24" y1="28" x2="40" y2="28" stroke="#7209B7" strokeWidth="1.5" strokeLinecap="round"/>
@@ -47,11 +53,13 @@ const cards = [
       </svg>
     ),
     description: "I am driven by transforming unstructured complexity into clear strategic roadmaps — whether through 550+ process taxonomy designs, go/no-go investment analyses, or stakeholder-aligned product roadmaps.",
+    accent: "from-brand-blue to-brand-purple",
+    tag: "Drive",
   },
   {
     title: "How I Think",
     illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-14 h-14">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
         <rect x="8" y="40" width="8" height="16" rx="1" fill="#7209B7" opacity="0.7"/>
         <rect x="20" y="28" width="8" height="28" rx="1" fill="#4361EE" opacity="0.7"/>
         <rect x="32" y="20" width="8" height="36" rx="1" fill="#4CC9F0" opacity="0.7"/>
@@ -61,11 +69,13 @@ const cards = [
       </svg>
     ),
     description: "Hypothesis-led and data-validated. I apply consulting frameworks — IRR, NPV, scenario modeling — alongside design thinking and regression analysis to generate evidence-based, stakeholder-ready recommendations.",
+    accent: "from-brand-cyan to-brand-purple",
+    tag: "Methodology",
   },
   {
     title: "What Drives Me",
     illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-14 h-14">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
         <circle cx="32" cy="32" r="20" stroke="#4CC9F0" strokeWidth="1.5" strokeDasharray="3 2"/>
         <circle cx="32" cy="32" r="12" stroke="#7209B7" strokeWidth="1.5"/>
         <circle cx="32" cy="32" r="5" fill="#4CC9F0"/>
@@ -76,11 +86,13 @@ const cards = [
       </svg>
     ),
     description: "Impact at scale. Whether advising on large-scale infrastructure feasibility or retaining 200+ daily active users, I am motivated by strategic decisions that matter and product solutions that last.",
+    accent: "from-brand-purple to-brand-blue",
+    tag: "Mission",
   },
   {
     title: "Career Vision",
     illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-14 h-14">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
         <circle cx="32" cy="16" r="8" stroke="#4CC9F0" strokeWidth="1.5"/>
         <circle cx="12" cy="48" r="6" stroke="#7209B7" strokeWidth="1.5"/>
         <circle cx="52" cy="48" r="6" stroke="#4361EE" strokeWidth="1.5"/>
@@ -91,12 +103,77 @@ const cards = [
       </svg>
     ),
     description: "To lead strategy and product functions at the nexus of consulting and technology — building organizations that are adaptive, data-driven, and design-forward in an AI-powered world.",
+    accent: "from-brand-blue to-brand-cyan",
+    tag: "Vision",
   },
 ];
 
+// Card pop animation variants
+const cardVariants = {
+  enter: (direction: number) => ({
+    scale: 0.3,
+    opacity: 0,
+    rotateY: direction > 0 ? 25 : -25,
+    rotateX: 8,
+    y: 80,
+    filter: "blur(10px)",
+  }),
+  center: {
+    scale: 1,
+    opacity: 1,
+    rotateY: 0,
+    rotateX: 0,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      type: "spring" as const,
+      stiffness: 200,
+      damping: 22,
+      mass: 1,
+      duration: 0.7,
+    },
+  },
+  exit: (direction: number) => ({
+    scale: 0.6,
+    opacity: 0,
+    rotateY: direction > 0 ? -20 : 20,
+    rotateX: -5,
+    y: -40,
+    filter: "blur(6px)",
+    transition: {
+      duration: 0.35,
+      ease: "easeIn" as const,
+    },
+  }),
+};
+
 export default function About() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const directionRef = useRef(0);
+
+  const paginate = (dir: number) => {
+    directionRef.current = dir;
+    setDirection(dir);
+    setActiveIndex((prev) => (prev + dir + cards.length) % cards.length);
+  };
+
+  // Auto-rotate every 5 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => paginate(1), 5000);
+    return () => clearInterval(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeIndex, isPaused]);
+
+  const card = cards[activeIndex];
+
   return (
-    <section className="relative py-32 bg-brand-charcoal overflow-hidden">
+    <section id="about" className="relative py-32 bg-brand-charcoal overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-navy/40 rounded-full blur-[120px] pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 w-full">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -113,27 +190,135 @@ export default function About() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {cards.map((card, index) => (
-            <motion.div
-              key={card.title}
-              className="flex flex-col p-10 rounded-2xl bg-brand-navy border border-white/10 hover:border-brand-cyan/40 transition-colors duration-300 min-h-[280px]"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -6, boxShadow: "0 20px 60px rgba(76,201,240,0.08)" }}
-              data-magnetic="true"
+        {/* Single focused card */}
+        <div
+          className="relative flex flex-col items-center"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Card container with 3D perspective */}
+          <div
+            className="relative w-full max-w-2xl mx-auto overflow-visible"
+            style={{ perspective: "1200px", minHeight: 420 }}
+          >
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={activeIndex}
+                custom={direction}
+                variants={cardVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="absolute inset-0 p-10 md:p-14 rounded-3xl bg-brand-navy border border-white/10 flex flex-col justify-between"
+                style={{
+                  boxShadow:
+                    "0 0 80px rgba(76,201,240,0.12), 0 0 160px rgba(114,9,183,0.06), 0 20px 60px rgba(0,0,0,0.4)",
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                {/* Tag row */}
+                <div className="flex items-center justify-between mb-6">
+                  <motion.span
+                    className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase bg-gradient-to-r ${card.accent} bg-clip-text text-transparent border border-white/10`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.25, duration: 0.4 }}
+                  >
+                    {card.tag}
+                  </motion.span>
+                  <motion.span
+                    className="text-xs text-gray-600 font-mono"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.25, duration: 0.4 }}
+                  >
+                    {String(activeIndex + 1).padStart(2, "0")} / {String(cards.length).padStart(2, "0")}
+                  </motion.span>
+                </div>
+
+                {/* Illustration */}
+                <motion.div
+                  className="mb-6"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.15, type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  {card.illustration}
+                </motion.div>
+
+                {/* Text content */}
+                <div>
+                  <motion.h3
+                    className={`text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r ${card.accent} bg-clip-text text-transparent`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                  >
+                    {card.title}
+                  </motion.h3>
+                  <motion.p
+                    className="text-gray-300 font-sans text-lg leading-relaxed"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                  >
+                    {card.description}
+                  </motion.p>
+                </div>
+
+                {/* Progress bar */}
+                <div className="mt-8 w-full h-[2px] bg-white/10 relative overflow-hidden rounded-full">
+                  {!isPaused && (
+                    <motion.div
+                      className={`absolute top-0 left-0 h-full bg-gradient-to-r ${card.accent}`}
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      key={`progress-${activeIndex}`}
+                      transition={{ duration: 5, ease: "linear" }}
+                    />
+                  )}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center gap-6 mt-10">
+            <button
+              onClick={() => paginate(-1)}
+              className="w-12 h-12 rounded-full border border-white/15 flex items-center justify-center text-gray-400 hover:border-brand-cyan/60 hover:text-brand-cyan hover:shadow-[0_0_20px_rgba(76,201,240,0.2)] transition-all"
+              aria-label="Previous"
             >
-              <div className="mb-6">
-                {card.illustration}
-              </div>
-              <h3 className="text-2xl font-display font-bold mb-4 text-white">{card.title}</h3>
-              <p className="text-gray-300 font-sans text-lg leading-relaxed flex-1">
-                {card.description}
-              </p>
-            </motion.div>
-          ))}
+              <ChevronLeft size={20} />
+            </button>
+
+            {/* Dot indicators */}
+            <div className="flex items-center gap-2.5">
+              {cards.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setDirection(i > activeIndex ? 1 : -1);
+                    setActiveIndex(i);
+                  }}
+                  className={`rounded-full transition-all duration-400 ${
+                    i === activeIndex
+                      ? "w-8 h-2.5 bg-gradient-to-r from-brand-cyan to-brand-purple shadow-[0_0_12px_rgba(76,201,240,0.4)]"
+                      : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
+                  }`}
+                  aria-label={`Go to card ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={() => paginate(1)}
+              className="w-12 h-12 rounded-full border border-white/15 flex items-center justify-center text-gray-400 hover:border-brand-cyan/60 hover:text-brand-cyan hover:shadow-[0_0_20px_rgba(76,201,240,0.2)] transition-all"
+              aria-label="Next"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
       </div>
     </section>

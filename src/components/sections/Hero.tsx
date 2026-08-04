@@ -5,8 +5,13 @@ import { ArrowDown, FileText, MoveRight } from "lucide-react";
 import Image from "next/image";
 
 export default function Hero() {
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden px-6 md:px-12 lg:px-24">
+    <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden px-6 md:px-12 lg:px-24">
       {/* Background gradients */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-blue/20 rounded-full blur-[128px] -z-10" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-purple/20 rounded-full blur-[128px] -z-10" />
@@ -40,14 +45,16 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <button 
+              onClick={() => scrollToSection("journey")}
               className="px-6 py-3 bg-brand-white text-brand-black rounded-full font-medium flex items-center gap-2 hover:scale-105 transition-transform"
               data-magnetic="true"
             >
               Explore My Journey <MoveRight size={18} />
             </button>
             <button 
-              className="px-6 py-3 border border-white/20 rounded-full font-medium flex items-center gap-2 hover:bg-white/5 transition-colors"
+              className="px-6 py-3 border border-white/20 rounded-full font-medium flex items-center gap-2 hover:bg-white/5 transition-colors opacity-60 cursor-default"
               data-magnetic="true"
+              title="Resume coming soon"
             >
               View Resume <FileText size={18} />
             </button>
@@ -88,20 +95,22 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500"
+      <motion.button
+        onClick={() => scrollToSection("about")}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer group"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
+        aria-label="Scroll to next section"
       >
-        <span className="text-xs uppercase tracking-widest">Scroll to Begin</span>
+        <span className="text-xs uppercase tracking-widest group-hover:text-brand-cyan transition-colors">Scroll to Begin</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
           <ArrowDown size={16} />
         </motion.div>
-      </motion.div>
+      </motion.button>
     </section>
   );
 }

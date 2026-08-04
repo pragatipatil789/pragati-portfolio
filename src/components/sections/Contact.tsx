@@ -25,10 +25,16 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
+          <p className="text-brand-cyan font-mono text-sm tracking-[0.3em] uppercase mb-6">
+            Consulting · Strategy · Product
+          </p>
           <h2 className="text-5xl md:text-7xl font-display font-bold mb-6">
-            Let&apos;s build something <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">extraordinary.</span>
+            Let&apos;s solve{" "}
+            <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">
+              what matters next.
+            </span>
           </h2>
-          <p className="text-xl text-gray-400 font-sans mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 font-sans mb-12 max-w-2xl mx-auto leading-relaxed">
             Actively seeking high-impact consulting and product strategy roles where I can drive transformation, lead cross-functional engagements, and deliver outcomes that shape markets.
           </p>
         </motion.div>
@@ -40,7 +46,7 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <a href="mailto:pragatirpatil218@gmail.com" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-white text-brand-black rounded-full font-medium hover:scale-105 transition-transform">
+          <a href="mailto:pragatirpatil18@gmail.com" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-white text-brand-black rounded-full font-medium hover:scale-105 transition-transform">
             <Mail size={20} />
             Send an Email
           </a>
@@ -50,10 +56,14 @@ export default function Contact() {
             LinkedIn
           </a>
           
-          <a href="/resume.pdf" target="_blank" rel="noreferrer" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 border border-white/20 text-white rounded-full font-medium hover:bg-white/5 transition-colors">
+          <button
+            disabled
+            title="Resume will be available soon"
+            className="flex items-center gap-3 px-8 py-4 border border-white/10 text-white/40 rounded-full font-medium cursor-not-allowed select-none"
+          >
             <FileText size={20} />
             View Full Resume
-          </a>
+          </button>
         </motion.div>
       </div>
       

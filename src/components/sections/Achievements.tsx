@@ -4,11 +4,10 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const achievements = [
-  { value: 75, prefix: "$", suffix: "M+", label: "Asset Valuation Assessed" },
   { value: 550, suffix: "+", label: "Processes Structured" },
   { value: 200, suffix: "+", label: "Daily Active Users Scaled" },
   { value: 10, suffix: "%", label: "Retention Uplift Achieved" },
-  { value: 4, suffix: "th", label: "Rank - Inter College Case Comp." },
+  { value: 4, suffix: "th", label: "Rank — Inter College Case Comp." },
   { value: 2, suffix: "x", label: "Gold & Silver Medals" },
 ];
 
@@ -62,7 +61,7 @@ export default function Achievements() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
           {achievements.map((achievement, index) => (
             <motion.div
               key={index}
@@ -78,7 +77,6 @@ export default function Achievements() {
                 <Counter 
                   from={0} 
                   to={achievement.value} 
-                  prefix={achievement.prefix} 
                   suffix={achievement.suffix} 
                 />
               </div>
