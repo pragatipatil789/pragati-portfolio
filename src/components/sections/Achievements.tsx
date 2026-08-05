@@ -11,35 +11,37 @@ const achievements = [
   { value: 2, suffix: "x", label: "Gold & Silver Medals" },
 ];
 
-function Counter({ from, to, prefix = "", suffix = "" }: { from: number; to: number; prefix?: string; suffix?: string }) {
+function Typewriter({ text }: { text: string }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
   const inView = useInView(nodeRef, { once: true, margin: "-100px" });
-  const [current, setCurrent] = useState(from);
+  const [current, setCurrent] = useState("");
 
   useEffect(() => {
     if (inView) {
-      let startTime: number;
-      const duration = 2000;
-
-      const animate = (timestamp: number) => {
-        if (!startTime) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        
-        // Easing function (easeOutExpo)
-        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-        
-        setCurrent(Math.floor(from + (to - from) * ease));
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
+      let index = 0;
+      const interval = setInterval(() => {
+        setCurrent(text.slice(0, index + 1));
+        index++;
+        if (index === text.length) {
+          clearInterval(interval);
         }
-      };
-      
-      requestAnimationFrame(animate);
+      }, 150);
+      return () => clearInterval(interval);
     }
-  }, [inView, from, to]);
+  }, [inView, text]);
 
-  return <span ref={nodeRef}>{prefix}{current}{suffix}</span>;
+  return (
+    <span ref={nodeRef} className="relative flex items-center justify-center">
+      {current}
+      {inView && (
+        <motion.span
+          animate={{ opacity: [1, 0, 1] }}
+          transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+          className="inline-block w-[3px] bg-brand-cyan h-[0.8em] ml-1"
+        />
+      )}
+    </span>
+  );
 }
 
 export default function Achievements() {
@@ -53,10 +55,10 @@ export default function Achievements() {
           transition={{ duration: 0.8 }}
           className="mb-20 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-slate-900">
             Measurable <span className="text-brand-purple">Impact.</span>
           </h2>
-          <p className="text-xl text-gray-400 font-sans max-w-xl mx-auto">
+          <p className="text-xl text-slate-600 font-sans max-w-xl mx-auto">
             Numbers that tell a story of strategic execution and growth.
           </p>
         </motion.div>
@@ -65,7 +67,7 @@ export default function Achievements() {
           {achievements.map((achievement, index) => (
             <motion.div
               key={index}
-              className="text-center p-8 rounded-3xl bg-brand-navy/20 border border-white/5 hover:border-brand-cyan/30 transition-colors"
+              className="text-center p-8 rounded-3xl bg-white border border-slate-200 hover:border-brand-cyan/50 hover:shadow-lg transition-all"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -74,13 +76,9 @@ export default function Achievements() {
               data-magnetic="true"
             >
               <div className="text-4xl md:text-6xl font-display font-black mb-4 bg-gradient-to-r from-brand-cyan to-brand-blue bg-clip-text text-transparent inline-block">
-                <Counter 
-                  from={0} 
-                  to={achievement.value} 
-                  suffix={achievement.suffix} 
-                />
+                <Typewriter text={`${achievement.value}${achievement.suffix}`} />
               </div>
-              <div className="text-sm md:text-base text-gray-400 font-medium tracking-wide uppercase">
+              <div className="text-sm md:text-base text-slate-600 font-medium tracking-wide uppercase">
                 {achievement.label}
               </div>
             </motion.div>

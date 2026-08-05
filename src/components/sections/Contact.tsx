@@ -5,7 +5,7 @@ import { Link, Mail, FileText } from "lucide-react";
 
 export default function Contact() {
   return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-center py-32 px-6 overflow-hidden bg-brand-black">
+    <section className="relative min-h-[90vh] flex flex-col items-center justify-center py-32 px-6 overflow-hidden bg-slate-50">
       {/* Animated background gradient mesh */}
       <motion.div 
         className="absolute inset-0 opacity-30 z-0"
@@ -28,13 +28,13 @@ export default function Contact() {
           <p className="text-brand-cyan font-mono text-sm tracking-[0.3em] uppercase mb-6">
             Consulting · Strategy · Product
           </p>
-          <h2 className="text-5xl md:text-7xl font-display font-bold mb-6">
+          <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 text-slate-900">
             Let&apos;s solve{" "}
             <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">
               what matters next.
             </span>
           </h2>
-          <p className="text-xl text-gray-400 font-sans mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-600 font-sans mb-12 max-w-2xl mx-auto leading-relaxed">
             Actively seeking high-impact consulting and product strategy roles where I can drive transformation, lead cross-functional engagements, and deliver outcomes that shape markets.
           </p>
         </motion.div>
@@ -46,7 +46,7 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <a href="mailto:pragatirpatil18@gmail.com" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-white text-brand-black rounded-full font-medium hover:scale-105 transition-transform">
+          <a href="mailto:pragatirpatil18@gmail.com" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-black text-white rounded-full font-medium hover:scale-105 transition-transform">
             <Mail size={20} />
             Send an Email
           </a>
@@ -59,7 +59,7 @@ export default function Contact() {
           <button
             disabled
             title="Resume will be available soon"
-            className="flex items-center gap-3 px-8 py-4 border border-white/10 text-white/40 rounded-full font-medium cursor-not-allowed select-none"
+            className="flex items-center gap-3 px-8 py-4 border border-slate-300 text-slate-400 rounded-full font-medium cursor-not-allowed select-none"
           >
             <FileText size={20} />
             View Full Resume
@@ -67,7 +67,7 @@ export default function Contact() {
         </motion.div>
       </div>
       
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-sm text-gray-500 font-mono tracking-wider">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-sm text-slate-500 font-mono tracking-wider">
         © {new Date().getFullYear()} PRAGATI PATIL. ALL RIGHTS RESERVED.
       </div>
     </section>

@@ -30,7 +30,7 @@ export default function Hero() {
           </motion.div>
           
           <motion.p
-            className="text-lg md:text-xl text-gray-400 font-sans max-w-xl leading-relaxed"
+            className="text-lg md:text-xl text-slate-600 font-sans max-w-xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -46,17 +46,10 @@ export default function Hero() {
           >
             <button 
               onClick={() => scrollToSection("journey")}
-              className="px-6 py-3 bg-brand-white text-brand-black rounded-full font-medium flex items-center gap-2 hover:scale-105 transition-transform"
+              className="px-6 py-3 bg-brand-white text-brand-black rounded-full font-medium flex items-center gap-2 hover:scale-105 transition-transform shadow-lg"
               data-magnetic="true"
             >
               Explore My Journey <MoveRight size={18} />
-            </button>
-            <button 
-              className="px-6 py-3 border border-white/20 rounded-full font-medium flex items-center gap-2 hover:bg-white/5 transition-colors opacity-60 cursor-default"
-              data-magnetic="true"
-              title="Resume coming soon"
-            >
-              View Resume <FileText size={18} />
             </button>
           </motion.div>
         </div>
@@ -82,7 +75,7 @@ export default function Hero() {
             }}
           />
           
-          <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/10 bg-brand-charcoal/50 flex items-center justify-center">
+          <div className="absolute inset-0 rounded-3xl overflow-hidden border border-slate-200 bg-white/50 flex items-center justify-center">
             <Image 
               src="/profile.jpg" 
               alt="Pragati Patil" 
@@ -97,7 +90,7 @@ export default function Hero() {
       {/* Scroll Indicator */}
       <motion.button
         onClick={() => scrollToSection("about")}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer group"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer group"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}

@@ -182,10 +182,10 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="mb-20 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-slate-900">
             Beyond the <span className="text-brand-cyan">Resume.</span>
           </h2>
-          <p className="text-xl text-gray-400 font-sans max-w-2xl mx-auto">
+          <p className="text-xl text-slate-600 font-sans max-w-2xl mx-auto">
             I don&apos;t just manage products — I architect strategies and lead with purpose to drive measurable, lasting growth.
           </p>
         </motion.div>
@@ -209,7 +209,7 @@ export default function About() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="absolute inset-0 p-10 md:p-14 rounded-3xl bg-brand-navy border border-white/10 flex flex-col justify-between"
+                className="absolute inset-0 p-10 md:p-14 rounded-3xl bg-brand-navy border border-slate-200 flex flex-col justify-between"
                 style={{
                   boxShadow:
                     "0 0 80px rgba(76,201,240,0.12), 0 0 160px rgba(114,9,183,0.06), 0 20px 60px rgba(0,0,0,0.4)",
@@ -219,7 +219,7 @@ export default function About() {
                 {/* Tag row */}
                 <div className="flex items-center justify-between mb-6">
                   <motion.span
-                    className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase bg-gradient-to-r ${card.accent} bg-clip-text text-transparent border border-white/10`}
+                    className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase bg-gradient-to-r ${card.accent} bg-clip-text text-transparent border border-slate-200`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.25, duration: 0.4 }}
@@ -227,7 +227,7 @@ export default function About() {
                     {card.tag}
                   </motion.span>
                   <motion.span
-                    className="text-xs text-gray-600 font-mono"
+                    className="text-xs text-slate-500 font-mono"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.25, duration: 0.4 }}
@@ -257,7 +257,7 @@ export default function About() {
                     {card.title}
                   </motion.h3>
                   <motion.p
-                    className="text-gray-300 font-sans text-lg leading-relaxed"
+                    className="text-slate-600 font-sans text-lg leading-relaxed"
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
@@ -267,7 +267,7 @@ export default function About() {
                 </div>
 
                 {/* Progress bar */}
-                <div className="mt-8 w-full h-[2px] bg-white/10 relative overflow-hidden rounded-full">
+                <div className="mt-8 w-full h-[2px] bg-slate-200 relative overflow-hidden rounded-full">
                   {!isPaused && (
                     <motion.div
                       className={`absolute top-0 left-0 h-full bg-gradient-to-r ${card.accent}`}
@@ -286,7 +286,7 @@ export default function About() {
           <div className="flex items-center gap-6 mt-10">
             <button
               onClick={() => paginate(-1)}
-              className="w-12 h-12 rounded-full border border-white/15 flex items-center justify-center text-gray-400 hover:border-brand-cyan/60 hover:text-brand-cyan hover:shadow-[0_0_20px_rgba(76,201,240,0.2)] transition-all"
+              className="w-12 h-12 rounded-full border border-slate-300 flex items-center justify-center text-gray-400 hover:border-brand-cyan/60 hover:text-brand-cyan hover:shadow-[0_0_20px_rgba(76,201,240,0.2)] transition-all"
               aria-label="Previous"
             >
               <ChevronLeft size={20} />
@@ -304,7 +304,7 @@ export default function About() {
                   className={`rounded-full transition-all duration-400 ${
                     i === activeIndex
                       ? "w-8 h-2.5 bg-gradient-to-r from-brand-cyan to-brand-purple shadow-[0_0_12px_rgba(76,201,240,0.4)]"
-                      : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
+                      : "w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400"
                   }`}
                   aria-label={`Go to card ${i + 1}`}
                 />
@@ -313,7 +313,7 @@ export default function About() {
 
             <button
               onClick={() => paginate(1)}
-              className="w-12 h-12 rounded-full border border-white/15 flex items-center justify-center text-gray-400 hover:border-brand-cyan/60 hover:text-brand-cyan hover:shadow-[0_0_20px_rgba(76,201,240,0.2)] transition-all"
+              className="w-12 h-12 rounded-full border border-slate-300 flex items-center justify-center text-gray-400 hover:border-brand-cyan/60 hover:text-brand-cyan hover:shadow-[0_0_20px_rgba(76,201,240,0.2)] transition-all"
               aria-label="Next"
             >
               <ChevronRight size={20} />

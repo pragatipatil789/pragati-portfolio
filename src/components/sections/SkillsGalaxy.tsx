@@ -128,7 +128,7 @@ export default function SkillsGalaxy() {
         {stars.map((star, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-white"
+            className="absolute rounded-full bg-slate-400"
             style={{
               left: `${star.x}%`,
               top: `${star.y}%`,
@@ -136,7 +136,7 @@ export default function SkillsGalaxy() {
               height: star.size,
             }}
             animate={{
-              opacity: [0.1, 0.7, 0.1],
+              opacity: [0.1, 0.4, 0.1],
             }}
             transition={{
               duration: star.duration,
@@ -162,7 +162,7 @@ export default function SkillsGalaxy() {
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             The <span className="text-brand-cyan">Constellation.</span>
           </h2>
-          <p className="text-xl text-gray-400 font-sans max-w-xl mx-auto">
+          <p className="text-xl text-slate-600 font-sans max-w-xl mx-auto">
             A curated ecosystem of competencies — hover any node to explore.
           </p>
         </motion.div>
@@ -188,7 +188,7 @@ export default function SkillsGalaxy() {
                 cy={cy}
                 r={ringRadii[ring]}
                 fill="none"
-                stroke="rgba(255,255,255,0.06)"
+                stroke="rgba(0,0,0,0.1)"
                 strokeWidth="1"
                 strokeDasharray="6 4"
                 initial={{ opacity: 0, scale: 0 }}
@@ -209,7 +209,7 @@ export default function SkillsGalaxy() {
                 y2={pos.y}
                 stroke={pos.color}
                 strokeWidth={hovered === pos.globalIndex ? 2 : 0.8}
-                strokeOpacity={hovered === pos.globalIndex ? 0.6 : 0.12}
+                strokeOpacity={hovered === pos.globalIndex ? 0.8 : 0.2}
                 strokeDasharray={hovered === pos.globalIndex ? "none" : "4 6"}
                 initial={{ pathLength: 0, opacity: 0 }}
                 whileInView={{ pathLength: 1, opacity: 1 }}
@@ -241,7 +241,7 @@ export default function SkillsGalaxy() {
               cy={cy}
               r={50}
               fill="url(#centerGrad)"
-              stroke="rgba(76,201,240,0.3)"
+              stroke="rgba(0,0,0,0.1)"
               strokeWidth="2"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
@@ -255,7 +255,7 @@ export default function SkillsGalaxy() {
               cy={cy}
               r={54}
               fill="none"
-              stroke="rgba(76,201,240,0.15)"
+              stroke="rgba(0,0,0,0.05)"
               strokeWidth="1"
               animate={{ r: [54, 60, 54], opacity: [0.3, 0.1, 0.3] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -275,7 +275,7 @@ export default function SkillsGalaxy() {
               x={cx}
               y={cy + 6}
               textAnchor="middle"
-              fill="rgba(255,255,255,0.5)"
+              fill="rgba(0,0,0,0.5)"
               fontSize="11"
             >
               ×
@@ -325,7 +325,7 @@ export default function SkillsGalaxy() {
                     cx={pos.x}
                     cy={pos.y}
                     r={nodeRadius}
-                    fill={isHovered ? pos.color + "30" : "rgba(15,15,30,0.9)"}
+                    fill={isHovered ? pos.color + "20" : "rgba(255,255,255,0.9)"}
                     stroke={pos.color}
                     strokeWidth={isHovered ? 2 : 1}
                     strokeOpacity={isHovered ? 0.9 : 0.4}
@@ -354,7 +354,7 @@ export default function SkillsGalaxy() {
                     x={pos.x}
                     y={pos.y + 1}
                     textAnchor="middle"
-                    fill="white"
+                    fill="#1A1A1A"
                     fontSize={isHovered ? "9.5" : "8.5"}
                     fontWeight="600"
                     style={{
@@ -386,9 +386,9 @@ export default function SkillsGalaxy() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.25 }}
                     >
-                      <div className="bg-brand-navy/95 border border-white/10 rounded-xl px-4 py-3 backdrop-blur-md shadow-2xl">
+                      <div className="bg-white/95 border border-slate-200 rounded-xl px-4 py-3 backdrop-blur-md shadow-xl">
                         <p
-                          className="text-xs leading-relaxed text-center"
+                          className="text-sm font-medium leading-relaxed text-center"
                           style={{ color: pos.color }}
                         >
                           {pos.desc}
@@ -403,8 +403,8 @@ export default function SkillsGalaxy() {
             {/* Gradient definitions */}
             <defs>
               <radialGradient id="centerGrad" cx="50%" cy="50%">
-                <stop offset="0%" stopColor="rgba(76,201,240,0.15)" />
-                <stop offset="100%" stopColor="rgba(15,15,30,0.95)" />
+                <stop offset="0%" stopColor="rgba(255,255,255,1)" />
+                <stop offset="100%" stopColor="rgba(240,240,245,0.95)" />
               </radialGradient>
             </defs>
           </svg>
@@ -419,10 +419,10 @@ export default function SkillsGalaxy() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.5, delay: index * 0.07 }}
-              className="p-5 rounded-2xl border border-white/10 bg-brand-navy/50"
+              className="p-5 rounded-2xl border border-slate-200 bg-white"
               style={{
                 borderColor: skill.color + "40",
-                boxShadow: `0 0 20px ${skill.color}10`,
+                boxShadow: `0 4px 20px ${skill.color}15`,
               }}
             >
               <div
@@ -431,12 +431,11 @@ export default function SkillsGalaxy() {
               >
                 ◈
               </div>
-              <div className="font-display font-bold text-sm text-white mb-2">
+              <div className="font-display font-bold text-sm text-slate-900 mb-2">
                 {skill.name}
               </div>
               <p
-                className="text-xs leading-relaxed opacity-80"
-                style={{ color: skill.color }}
+                className="text-xs leading-relaxed text-slate-600"
               >
                 {skill.desc}
               </p>

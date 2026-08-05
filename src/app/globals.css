@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-black: #050505;
-  --color-brand-charcoal: #1A1A1A;
-  --color-brand-navy: #0A1128;
+  --color-brand-black: #FAFAFA; /* Off-white main bg */
+  --color-brand-charcoal: #F1F3F5; /* Light alternating section bg */
+  --color-brand-navy: #FFFFFF; /* White card bg */
   
   --color-brand-blue: #0077B6;
   --color-brand-purple: #7209B7;
-  --color-brand-cyan: #4CC9F0;
-  --color-brand-white: #F8F9FA;
+  --color-brand-cyan: #0096C7; /* Slightly darker cyan for contrast */
+  --color-brand-white: #1A1A1A; /* Dark text */
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
@@ -18,7 +18,7 @@
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
