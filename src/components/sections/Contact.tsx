@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Link, Mail, FileText } from "lucide-react";
+import { Link, Mail, Phone } from "lucide-react";
 
 export default function Contact() {
   return (
@@ -46,24 +46,20 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <a href="mailto:pragatirpatil18@gmail.com" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-black text-white rounded-full font-medium hover:scale-105 transition-transform">
+          <a href="mailto:pragati.pgdm27g@greatlakes.ed.in" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-black text-white rounded-full font-medium hover:scale-105 transition-transform">
             <Mail size={20} />
-            Send an Email
+            pragati.pgdm27g@greatlakes.ed.in
+          </a>
+          
+          <a href="tel:+917756881199" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-black text-white rounded-full font-medium hover:scale-105 transition-transform">
+            <Phone size={20} />
+            +91 7756881199
           </a>
           
           <a href="https://www.linkedin.com/in/pragati-patil-b620821b1/" target="_blank" rel="noreferrer" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-[#0077b5] text-white rounded-full font-medium hover:bg-[#005582] transition-colors">
             <Link size={20} />
             LinkedIn
           </a>
-          
-          <button
-            disabled
-            title="Resume will be available soon"
-            className="flex items-center gap-3 px-8 py-4 border border-slate-300 text-slate-400 rounded-full font-medium cursor-not-allowed select-none"
-          >
-            <FileText size={20} />
-            View Full Resume
-          </button>
         </motion.div>
       </div>
       

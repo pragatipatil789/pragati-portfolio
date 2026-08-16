@@ -6,14 +6,14 @@ import { motion } from "framer-motion";
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false); // Hide on touch devices
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     // Check if device is touch-based
     if (window.matchMedia("(pointer: coarse)").matches) {
       return;
     }
-    
+
     setIsVisible(true);
 
     const updateMousePosition = (e: MouseEvent) => {
@@ -47,34 +47,29 @@ export default function CustomCursor() {
   if (!isVisible) return null;
 
   return (
-    <>
+    <motion.div
+      className="fixed top-0 left-0 pointer-events-none z-[100]"
+      animate={{
+        x: mousePosition.x - (isHovered ? 16 : 5),
+        y: mousePosition.y - (isHovered ? 16 : 5),
+      }}
+      transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
+    >
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-white rounded-full pointer-events-none z-[100] mix-blend-difference"
+        className="rounded-full"
         animate={{
-          x: mousePosition.x - 6,
-          y: mousePosition.y - 6,
-          scale: isHovered ? 0 : 1,
+          width: isHovered ? 32 : 10,
+          height: isHovered ? 32 : 10,
+          backgroundColor: isHovered ? "rgba(0, 150, 199, 0.15)" : "rgba(0, 150, 199, 0.8)",
+          borderWidth: isHovered ? 1.5 : 0,
+          borderColor: "rgba(0, 150, 199, 0.6)",
         }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
+        style={{
+          borderStyle: "solid",
+          mixBlendMode: "normal",
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
       />
-      <motion.div
-        className="fixed top-0 left-0 w-10 h-10 border border-white/50 rounded-full pointer-events-none z-[99] mix-blend-difference flex items-center justify-center"
-        animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
-          scale: isHovered ? 1.5 : 1,
-          backgroundColor: isHovered ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0)",
-        }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.3 }}
-      >
-        {isHovered && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="w-1.5 h-1.5 bg-white rounded-full"
-          />
-        )}
-      </motion.div>
-    </>
+    </motion.div>
   );
 }

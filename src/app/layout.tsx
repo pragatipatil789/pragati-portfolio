@@ -13,8 +13,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Pragati Patil | Product Thinker & UX Designer",
-  description: "Award-winning interactive resume of Pragati Patil. Blending design, business, and technology.",
+  title: "Pragati Patil | Business Consultant & Product Strategist",
+  description: "Strategic thinker and product leader blending consulting rigor with design intuition to drive measurable business impact.",
 };
 
 export default function RootLayout({

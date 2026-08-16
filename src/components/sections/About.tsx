@@ -162,7 +162,7 @@ export default function About() {
   // Auto-rotate every 5 seconds
   useEffect(() => {
     if (isPaused) return;
-    const timer = setInterval(() => paginate(1), 5000);
+    const timer = setInterval(() => paginate(1), 2500);
     return () => clearInterval(timer);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIndex, isPaused]);
@@ -274,7 +274,7 @@ export default function About() {
                       initial={{ width: "0%" }}
                       animate={{ width: "100%" }}
                       key={`progress-${activeIndex}`}
-                      transition={{ duration: 5, ease: "linear" }}
+                      transition={{ duration: 2.5, ease: "linear" }}
                     />
                   )}
                 </div>

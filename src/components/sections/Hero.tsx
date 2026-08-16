@@ -56,7 +56,7 @@ export default function Hero() {
 
         {/* Portrait Image — smaller size */}
         <motion.div
-          className="relative h-[360px] w-full max-w-xs mx-auto"
+          className="relative h-[480px] w-full max-w-md mx-auto"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.4 }}

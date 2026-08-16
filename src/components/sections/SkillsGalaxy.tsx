@@ -85,11 +85,11 @@ export default function SkillsGalaxy() {
   const [hovered, setHovered] = useState<number | null>(null);
   const stars = useMemo(() => generateStars(80), []);
 
-  // Layout constants
-  const cx = 350;
-  const cy = 350;
-  const ringRadii = [0, 120, 200, 280];
-  const viewBoxSize = 700;
+  // Layout constants — 2x larger circles, bigger viewBox to accommodate
+  const cx = 500;
+  const cy = 500;
+  const ringRadii = [0, 180, 310, 430];
+  const viewBoxSize = 1000;
 
   // Distribute skills around rings
   const ring1 = skillNodes.filter((s) => s.ring === 1);
@@ -177,7 +177,7 @@ export default function SkillsGalaxy() {
         >
           <svg
             viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
-            className="w-full max-w-3xl"
+            className="w-full max-w-4xl"
             style={{ filter: "drop-shadow(0 0 40px rgba(76,201,240,0.08))" }}
           >
             {/* Orbit rings */}
@@ -235,11 +235,11 @@ export default function SkillsGalaxy() {
               />
             )}
 
-            {/* Center hub */}
+            {/* Center hub — 2x larger (radius 100) */}
             <motion.circle
               cx={cx}
               cy={cy}
-              r={50}
+              r={100}
               fill="url(#centerGrad)"
               stroke="rgba(0,0,0,0.1)"
               strokeWidth="2"
@@ -253,49 +253,62 @@ export default function SkillsGalaxy() {
             <motion.circle
               cx={cx}
               cy={cy}
-              r={54}
+              r={108}
               fill="none"
               stroke="rgba(0,0,0,0.05)"
               strokeWidth="1"
-              animate={{ r: [54, 60, 54], opacity: [0.3, 0.1, 0.3] }}
+              animate={{ r: [108, 118, 108], opacity: [0.3, 0.1, 0.3] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
+            {/* Center text — Pragati Patil name + role */}
             <text
               x={cx}
-              y={cy - 8}
+              y={cy - 24}
               textAnchor="middle"
-              fill="white"
-              fontSize="13"
+              fill="#1A1A1A"
+              fontSize="18"
               fontWeight="700"
               fontFamily="inherit"
             >
-              Strategy
+              Pragati Patil
             </text>
             <text
               x={cx}
-              y={cy + 6}
+              y={cy + 2}
               textAnchor="middle"
-              fill="rgba(0,0,0,0.5)"
-              fontSize="11"
-            >
-              ×
-            </text>
-            <text
-              x={cx}
-              y={cy + 20}
-              textAnchor="middle"
-              fill="white"
+              fill="rgba(0,0,0,0.4)"
               fontSize="13"
-              fontWeight="700"
               fontFamily="inherit"
             >
-              Product
+              ───
+            </text>
+            <text
+              x={cx}
+              y={cy + 22}
+              textAnchor="middle"
+              fill="#0096C7"
+              fontSize="14"
+              fontWeight="600"
+              fontFamily="inherit"
+            >
+              Business Consulting
+            </text>
+            <text
+              x={cx}
+              y={cy + 42}
+              textAnchor="middle"
+              fill="#7209B7"
+              fontSize="14"
+              fontWeight="600"
+              fontFamily="inherit"
+            >
+              × Product Strategy
             </text>
 
-            {/* Skill nodes */}
+            {/* Skill nodes — 2x larger */}
             {positions.map((pos, i) => {
               const isHovered = hovered === pos.globalIndex;
-              const nodeRadius = isHovered ? 38 : 30;
+              const nodeRadius = isHovered ? 76 : 60;
               return (
                 <g
                   key={i}
@@ -308,7 +321,7 @@ export default function SkillsGalaxy() {
                     <motion.circle
                       cx={pos.x}
                       cy={pos.y}
-                      r={nodeRadius + 10}
+                      r={nodeRadius + 16}
                       fill="none"
                       stroke={pos.color}
                       strokeWidth="1.5"
@@ -349,13 +362,13 @@ export default function SkillsGalaxy() {
                     }}
                   />
 
-                  {/* Node label */}
+                  {/* Node label — 2x font size */}
                   <text
                     x={pos.x}
-                    y={pos.y + 1}
+                    y={pos.y + 2}
                     textAnchor="middle"
                     fill="#1A1A1A"
-                    fontSize={isHovered ? "9.5" : "8.5"}
+                    fontSize={isHovered ? "16" : "14"}
                     fontWeight="600"
                     style={{
                       transition: "font-size 0.2s",
@@ -367,7 +380,7 @@ export default function SkillsGalaxy() {
                           <tspan
                             key={wi}
                             x={pos.x}
-                            dy={wi === 0 ? "-0.3em" : "1.2em"}
+                            dy={wi === 0 ? "-0.4em" : "1.3em"}
                           >
                             {word}
                           </tspan>
@@ -378,10 +391,10 @@ export default function SkillsGalaxy() {
                   {/* Tooltip on hover */}
                   {isHovered && (
                     <motion.foreignObject
-                      x={pos.x - 110}
-                      y={pos.y + nodeRadius + 12}
-                      width={220}
-                      height={80}
+                      x={pos.x - 130}
+                      y={pos.y + nodeRadius + 16}
+                      width={260}
+                      height={90}
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.25 }}
