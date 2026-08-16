@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Loader from "@/components/ui/Loader";
 import CustomCursor from "@/components/ui/CustomCursor";
+import Header from "@/components/ui/Header";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
@@ -23,6 +24,7 @@ export default function Home() {
       ) : (
         <>
           <CustomCursor />
+          <Header />
           <Hero />
           <About />
           <section id="journey">

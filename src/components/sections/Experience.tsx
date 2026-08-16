@@ -85,7 +85,7 @@ function PhotoPreviewModal({
       onClick={onClose}
     >
       <motion.div
-        className="relative max-w-4xl w-full mx-6 bg-brand-navy rounded-3xl overflow-hidden border border-slate-200"
+        className="relative max-w-4xl w-full mx-6 bg-brand-navy rounded-3xl overflow-hidden border border-white/10"
         initial={{ scale: 0.85, opacity: 0, y: 30 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.85, opacity: 0, y: 30 }}
@@ -136,7 +136,7 @@ function PhotoPreviewModal({
 
         {/* Caption & counter */}
         <div className="p-6 flex items-center justify-between">
-          <p className="text-slate-600 font-sans text-sm">{photo.caption}</p>
+          <p className="text-slate-400 font-sans text-sm">{photo.caption}</p>
           {photos.length > 1 && (
             <span className="text-xs font-mono text-slate-500">
               {currentIndex + 1} / {photos.length}
@@ -159,10 +159,10 @@ function PhotoStrip({
   if (photos.length === 0) {
     return (
       <div className="mt-6 flex items-center gap-3 text-slate-500">
-        <div className="w-16 h-16 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center">
-          <ImageIcon size={18} className="text-slate-400" />
+        <div className="w-16 h-16 rounded-xl border-2 border-dashed border-white/20 flex items-center justify-center">
+          <ImageIcon size={18} className="text-slate-500" />
         </div>
-        <span className="text-xs font-mono tracking-wide text-slate-400">Projects coming soon</span>
+        <span className="text-xs font-mono tracking-wide text-slate-500">Projects coming soon</span>
       </div>
     );
   }
@@ -173,7 +173,7 @@ function PhotoStrip({
         <motion.button
           key={i}
           onClick={() => onPhotoClick(i)}
-          className="relative w-16 h-16 rounded-xl overflow-hidden border border-slate-200 hover:border-brand-cyan/60 transition-all group flex-shrink-0"
+          className="relative w-16 h-16 rounded-xl overflow-hidden border border-white/10 hover:border-brand-cyan/60 transition-all group flex-shrink-0"
           whileHover={{ scale: 1.08, y: -2 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -207,8 +207,8 @@ function PhotoStrip({
         </motion.button>
       ))}
       {/* Add more placeholder */}
-      <div className="w-16 h-16 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center opacity-40">
-        <span className="text-xs text-slate-400">+</span>
+      <div className="w-16 h-16 rounded-xl border-2 border-dashed border-white/20 flex items-center justify-center opacity-40">
+        <span className="text-xs text-slate-500">+</span>
       </div>
     </div>
   );
@@ -250,14 +250,14 @@ export default function Experience() {
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
               The <span className="text-brand-purple">Journey.</span>
             </h2>
-            <p className="text-xl text-slate-600 font-sans max-w-2xl mx-auto">
+            <p className="text-xl text-slate-400 font-sans max-w-2xl mx-auto">
               A track record of leveraging design and data to solve complex business problems.
             </p>
           </motion.div>
 
           <div className="relative max-w-4xl mx-auto">
             {/* Central Timeline Line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-slate-200 -translate-x-1/2 rounded-full overflow-hidden">
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-white/10 -translate-x-1/2 rounded-full overflow-hidden">
               <motion.div 
                 className="absolute top-0 left-0 w-full bg-gradient-to-b from-brand-cyan via-brand-purple to-brand-blue"
                 style={{ height: lineHeight }}
@@ -279,16 +279,16 @@ export default function Experience() {
 
                   {/* Content side */}
                   <div className={`w-full md:w-1/2 pl-20 md:pl-0 ${index % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16 text-left"}`}>
-                    <span className="inline-block py-1 px-3 rounded-full bg-slate-100 border border-slate-200 text-xs tracking-widest text-brand-cyan mb-4 font-mono">
+                    <span className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-xs tracking-widest text-brand-cyan mb-4 font-mono">
                       {exp.period}
                     </span>
-                    <h3 className="text-2xl md:text-3xl font-display font-bold mb-2 text-slate-900">
+                    <h3 className="text-2xl md:text-3xl font-display font-bold mb-2 text-white">
                       {exp.role}
                     </h3>
-                    <h4 className="text-xl text-slate-600 font-medium mb-6">
+                    <h4 className="text-xl text-slate-400 font-medium mb-6">
                       {exp.company}
                     </h4>
-                    <ul className={`space-y-4 text-slate-600 font-sans ${index % 2 === 0 ? "md:ml-auto" : ""} max-w-lg`}>
+                    <ul className={`space-y-4 text-slate-400 font-sans ${index % 2 === 0 ? "md:ml-auto" : ""} max-w-lg`}>
                       {exp.achievements.map((ach, i) => (
                         <li key={i} className="leading-relaxed relative">
                           {ach}

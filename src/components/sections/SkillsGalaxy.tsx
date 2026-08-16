@@ -7,61 +7,61 @@ const skillNodes = [
   {
     name: "Strategic Advisory",
     desc: "Structuring complex business problems into actionable recommendations",
-    color: "#4CC9F0",
+    color: "#22D3EE",
     ring: 1,
   },
   {
     name: "Financial Modeling",
     desc: "IRR, NPV, payback period & scenario analysis for investment decisions",
-    color: "#7209B7",
+    color: "#A855F7",
     ring: 1,
   },
   {
     name: "Market Analysis",
     desc: "Competitive landscape mapping, demand forecasting & segmentation",
-    color: "#4361EE",
+    color: "#3B82F6",
     ring: 1,
   },
   {
     name: "Stakeholder Mgmt",
     desc: "Cross-functional alignment and executive communication",
-    color: "#4CC9F0",
+    color: "#22D3EE",
     ring: 2,
   },
   {
     name: "Process Optimization",
     desc: "Workflow taxonomy design across 550+ cross-functional processes",
-    color: "#7209B7",
+    color: "#A855F7",
     ring: 2,
   },
   {
     name: "Digital Transformation",
     desc: "End-to-end product delivery from ideation to scaled deployment",
-    color: "#4361EE",
+    color: "#3B82F6",
     ring: 2,
   },
   {
     name: "Change Management",
     desc: "Driving organizational adoption and managing transition complexity",
-    color: "#4CC9F0",
+    color: "#22D3EE",
     ring: 2,
   },
   {
     name: "Risk Assessment",
     desc: "Scenario modeling & sensitivity analysis to quantify business risk",
-    color: "#7209B7",
+    color: "#A855F7",
     ring: 3,
   },
   {
     name: "UX & Product Design",
     desc: "High-fidelity prototyping, user research & design systems",
-    color: "#4361EE",
+    color: "#3B82F6",
     ring: 3,
   },
   {
     name: "Executive Presentations",
     desc: "Translating complex findings into board-ready, narrative-driven decks",
-    color: "#4CC9F0",
+    color: "#22D3EE",
     ring: 3,
   },
 ];
@@ -85,7 +85,7 @@ export default function SkillsGalaxy() {
   const [hovered, setHovered] = useState<number | null>(null);
   const stars = useMemo(() => generateStars(80), []);
 
-  // Layout constants — 2x larger circles, bigger viewBox to accommodate
+  // Layout constants — 2x larger circles, bigger viewBox
   const cx = 500;
   const cy = 500;
   const ringRadii = [0, 180, 310, 430];
@@ -118,6 +118,29 @@ export default function SkillsGalaxy() {
     ...getPositions(ring3, ringRadii[3], Math.PI / 6),
   ];
 
+  // Determine tooltip position: left or right of the node based on position relative to center
+  function getTooltipPosition(pos: { x: number; y: number }) {
+    const isRightSide = pos.x >= cx;
+    const tooltipWidth = 260;
+    const gap = 16;
+    
+    if (isRightSide) {
+      // Place tooltip to the right
+      return {
+        x: pos.x + 70 + gap,
+        y: pos.y - 40,
+        align: "left" as const,
+      };
+    } else {
+      // Place tooltip to the left
+      return {
+        x: pos.x - 70 - gap - tooltipWidth,
+        y: pos.y - 40,
+        align: "right" as const,
+      };
+    }
+  }
+
   return (
     <section
       id="constellation"
@@ -128,7 +151,7 @@ export default function SkillsGalaxy() {
         {stars.map((star, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-slate-400"
+            className="absolute rounded-full bg-white"
             style={{
               left: `${star.x}%`,
               top: `${star.y}%`,
@@ -136,7 +159,7 @@ export default function SkillsGalaxy() {
               height: star.size,
             }}
             animate={{
-              opacity: [0.1, 0.4, 0.1],
+              opacity: [0.1, 0.5, 0.1],
             }}
             transition={{
               duration: star.duration,
@@ -149,7 +172,7 @@ export default function SkillsGalaxy() {
       </div>
 
       {/* Ambient radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(67,97,238,0.1)_0%,_transparent_60%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(59,130,246,0.08)_0%,_transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
@@ -159,10 +182,10 @@ export default function SkillsGalaxy() {
           transition={{ duration: 0.8 }}
           className="mb-16 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-white">
             The <span className="text-brand-cyan">Constellation.</span>
           </h2>
-          <p className="text-xl text-slate-600 font-sans max-w-xl mx-auto">
+          <p className="text-xl text-slate-400 font-sans max-w-xl mx-auto">
             A curated ecosystem of competencies — hover any node to explore.
           </p>
         </motion.div>
@@ -178,7 +201,7 @@ export default function SkillsGalaxy() {
           <svg
             viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
             className="w-full max-w-4xl"
-            style={{ filter: "drop-shadow(0 0 40px rgba(76,201,240,0.08))" }}
+            style={{ filter: "drop-shadow(0 0 40px rgba(34,211,238,0.06))" }}
           >
             {/* Orbit rings */}
             {[1, 2, 3].map((ring) => (
@@ -188,7 +211,7 @@ export default function SkillsGalaxy() {
                 cy={cy}
                 r={ringRadii[ring]}
                 fill="none"
-                stroke="rgba(0,0,0,0.1)"
+                stroke="rgba(255,255,255,0.06)"
                 strokeWidth="1"
                 strokeDasharray="6 4"
                 initial={{ opacity: 0, scale: 0 }}
@@ -209,7 +232,7 @@ export default function SkillsGalaxy() {
                 y2={pos.y}
                 stroke={pos.color}
                 strokeWidth={hovered === pos.globalIndex ? 2 : 0.8}
-                strokeOpacity={hovered === pos.globalIndex ? 0.8 : 0.2}
+                strokeOpacity={hovered === pos.globalIndex ? 0.8 : 0.15}
                 strokeDasharray={hovered === pos.globalIndex ? "none" : "4 6"}
                 initial={{ pathLength: 0, opacity: 0 }}
                 whileInView={{ pathLength: 1, opacity: 1 }}
@@ -227,21 +250,21 @@ export default function SkillsGalaxy() {
                 y2={positions[hovered].y}
                 stroke={positions[hovered].color}
                 strokeWidth={3}
-                strokeOpacity={0.4}
+                strokeOpacity={0.5}
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: [0, 1] }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                style={{ filter: `drop-shadow(0 0 8px ${positions[hovered].color})` }}
+                style={{ filter: `drop-shadow(0 0 12px ${positions[hovered].color})` }}
               />
             )}
 
-            {/* Center hub — 2x larger (radius 100) */}
+            {/* Center hub */}
             <motion.circle
               cx={cx}
               cy={cy}
               r={100}
-              fill="url(#centerGrad)"
-              stroke="rgba(0,0,0,0.1)"
+              fill="url(#centerGradDark)"
+              stroke="rgba(255,255,255,0.1)"
               strokeWidth="2"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
@@ -255,17 +278,17 @@ export default function SkillsGalaxy() {
               cy={cy}
               r={108}
               fill="none"
-              stroke="rgba(0,0,0,0.05)"
+              stroke="rgba(34,211,238,0.15)"
               strokeWidth="1"
               animate={{ r: [108, 118, 108], opacity: [0.3, 0.1, 0.3] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
-            {/* Center text — Pragati Patil name + role */}
+            {/* Center text */}
             <text
               x={cx}
               y={cy - 24}
               textAnchor="middle"
-              fill="#1A1A1A"
+              fill="white"
               fontSize="18"
               fontWeight="700"
               fontFamily="inherit"
@@ -276,7 +299,7 @@ export default function SkillsGalaxy() {
               x={cx}
               y={cy + 2}
               textAnchor="middle"
-              fill="rgba(0,0,0,0.4)"
+              fill="rgba(255,255,255,0.3)"
               fontSize="13"
               fontFamily="inherit"
             >
@@ -286,7 +309,7 @@ export default function SkillsGalaxy() {
               x={cx}
               y={cy + 22}
               textAnchor="middle"
-              fill="#0096C7"
+              fill="#22D3EE"
               fontSize="14"
               fontWeight="600"
               fontFamily="inherit"
@@ -297,7 +320,7 @@ export default function SkillsGalaxy() {
               x={cx}
               y={cy + 42}
               textAnchor="middle"
-              fill="#7209B7"
+              fill="#A855F7"
               fontSize="14"
               fontWeight="600"
               fontFamily="inherit"
@@ -309,6 +332,7 @@ export default function SkillsGalaxy() {
             {positions.map((pos, i) => {
               const isHovered = hovered === pos.globalIndex;
               const nodeRadius = isHovered ? 76 : 60;
+              const tooltip = getTooltipPosition(pos);
               return (
                 <g
                   key={i}
@@ -325,7 +349,7 @@ export default function SkillsGalaxy() {
                       fill="none"
                       stroke={pos.color}
                       strokeWidth="1.5"
-                      strokeOpacity={0.4}
+                      strokeOpacity={0.5}
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ duration: 0.3 }}
@@ -338,7 +362,7 @@ export default function SkillsGalaxy() {
                     cx={pos.x}
                     cy={pos.y}
                     r={nodeRadius}
-                    fill={isHovered ? pos.color + "20" : "rgba(255,255,255,0.9)"}
+                    fill={isHovered ? pos.color + "25" : "rgba(30,41,59,0.95)"}
                     stroke={pos.color}
                     strokeWidth={isHovered ? 2 : 1}
                     strokeOpacity={isHovered ? 0.9 : 0.4}
@@ -354,7 +378,7 @@ export default function SkillsGalaxy() {
                     style={{
                       transformOrigin: `${pos.x}px ${pos.y}px`,
                       filter: isHovered
-                        ? `drop-shadow(0 0 16px ${pos.color}60)`
+                        ? `drop-shadow(0 0 20px ${pos.color}60)`
                         : "none",
                     }}
                     animate={{
@@ -362,16 +386,16 @@ export default function SkillsGalaxy() {
                     }}
                   />
 
-                  {/* Node label — 2x font size */}
+                  {/* Node label — white text for dark theme */}
                   <text
                     x={pos.x}
                     y={pos.y + 2}
                     textAnchor="middle"
-                    fill="#1A1A1A"
+                    fill={isHovered ? pos.color : "rgba(241,245,249,0.9)"}
                     fontSize={isHovered ? "16" : "14"}
                     fontWeight="600"
                     style={{
-                      transition: "font-size 0.2s",
+                      transition: "font-size 0.2s, fill 0.2s",
                       pointerEvents: "none",
                     }}
                   >
@@ -388,21 +412,21 @@ export default function SkillsGalaxy() {
                       : pos.name}
                   </text>
 
-                  {/* Tooltip on hover */}
+                  {/* Tooltip — positioned to LEFT or RIGHT of node */}
                   {isHovered && (
                     <motion.foreignObject
-                      x={pos.x - 130}
-                      y={pos.y + nodeRadius + 16}
+                      x={tooltip.x}
+                      y={tooltip.y}
                       width={260}
                       height={90}
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, x: tooltip.align === "left" ? -10 : 10 }}
+                      animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.25 }}
                     >
-                      <div className="bg-white/95 border border-slate-200 rounded-xl px-4 py-3 backdrop-blur-md shadow-xl">
+                      <div className="bg-brand-navy/95 border border-white/10 rounded-xl px-4 py-3 backdrop-blur-md shadow-2xl">
                         <p
-                          className="text-sm font-medium leading-relaxed text-center"
-                          style={{ color: pos.color }}
+                          className="text-sm font-medium leading-relaxed"
+                          style={{ color: pos.color, textAlign: tooltip.align }}
                         >
                           {pos.desc}
                         </p>
@@ -415,9 +439,9 @@ export default function SkillsGalaxy() {
 
             {/* Gradient definitions */}
             <defs>
-              <radialGradient id="centerGrad" cx="50%" cy="50%">
-                <stop offset="0%" stopColor="rgba(255,255,255,1)" />
-                <stop offset="100%" stopColor="rgba(240,240,245,0.95)" />
+              <radialGradient id="centerGradDark" cx="50%" cy="50%">
+                <stop offset="0%" stopColor="rgba(30,41,59,1)" />
+                <stop offset="100%" stopColor="rgba(15,23,42,0.95)" />
               </radialGradient>
             </defs>
           </svg>
@@ -432,10 +456,10 @@ export default function SkillsGalaxy() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.5, delay: index * 0.07 }}
-              className="p-5 rounded-2xl border border-slate-200 bg-white"
+              className="p-5 rounded-2xl border border-white/10 bg-brand-navy"
               style={{
-                borderColor: skill.color + "40",
-                boxShadow: `0 4px 20px ${skill.color}15`,
+                borderColor: skill.color + "30",
+                boxShadow: `0 4px 20px ${skill.color}10`,
               }}
             >
               <div
@@ -444,11 +468,11 @@ export default function SkillsGalaxy() {
               >
                 ◈
               </div>
-              <div className="font-display font-bold text-sm text-slate-900 mb-2">
+              <div className="font-display font-bold text-sm text-white mb-2">
                 {skill.name}
               </div>
               <p
-                className="text-xs leading-relaxed text-slate-600"
+                className="text-xs leading-relaxed text-slate-400"
               >
                 {skill.desc}
               </p>

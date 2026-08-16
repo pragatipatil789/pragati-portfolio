@@ -1,10 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowDown, FileText, MoveRight } from "lucide-react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { ArrowDown, MoveRight } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Hero() {
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setShowScrollIndicator(latest < 50);
+  });
+
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -24,13 +32,13 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight text-white">
               Designing Experiences That <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">Create Business Impact.</span>
             </h1>
           </motion.div>
           
           <motion.p
-            className="text-lg md:text-xl text-slate-600 font-sans max-w-xl leading-relaxed"
+            className="text-lg md:text-xl text-slate-400 font-sans max-w-xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -46,7 +54,7 @@ export default function Hero() {
           >
             <button 
               onClick={() => scrollToSection("journey")}
-              className="px-6 py-3 bg-brand-white text-brand-black rounded-full font-medium flex items-center gap-2 hover:scale-105 transition-transform shadow-lg"
+              className="px-6 py-3 bg-brand-cyan text-brand-black rounded-full font-semibold flex items-center gap-2 hover:scale-105 transition-transform shadow-lg shadow-brand-cyan/20"
               data-magnetic="true"
             >
               Explore My Journey <MoveRight size={18} />
@@ -54,7 +62,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Portrait Image — smaller size */}
+        {/* Portrait Image */}
         <motion.div
           className="relative h-[480px] w-full max-w-md mx-auto"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -75,7 +83,7 @@ export default function Hero() {
             }}
           />
           
-          <div className="absolute inset-0 rounded-3xl overflow-hidden border border-slate-200 bg-white/50 flex items-center justify-center">
+          <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/10 bg-brand-navy/50 flex items-center justify-center">
             <Image 
               src="/profile.jpg" 
               alt="Pragati Patil" 
@@ -87,13 +95,14 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator — hides on scroll */}
       <motion.button
         onClick={() => scrollToSection("about")}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer group"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 hover:text-brand-cyan transition-colors cursor-pointer group"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
+        animate={{ opacity: showScrollIndicator ? 1 : 0 }}
+        transition={{ duration: 0.4 }}
+        style={{ pointerEvents: showScrollIndicator ? "auto" : "none" }}
         aria-label="Scroll to next section"
       >
         <span className="text-xs uppercase tracking-widest group-hover:text-brand-cyan transition-colors">Scroll to Begin</span>

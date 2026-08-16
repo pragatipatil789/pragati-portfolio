@@ -33,7 +33,7 @@ const leadership = [
     context: "RCF",
     period: "2015",
     description: "Handpicked to lead the girl's troop for the Republic Day March Past.",
-    icon: <Award size={20} className="text-yellow-500" />
+    icon: <Award size={20} className="text-yellow-400" />
   },
   {
     role: "Logistics Coordinator",
@@ -46,7 +46,7 @@ const leadership = [
 
 export default function Education() {
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-24 bg-brand-black">
+    <section id="education" className="py-32 px-6 md:px-12 lg:px-24 bg-brand-black">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
         
         {/* Education Column */}
@@ -58,10 +58,10 @@ export default function Education() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-white">
               Academic <span className="text-brand-purple">Foundation.</span>
             </h2>
-            <p className="text-gray-400 font-sans">
+            <p className="text-slate-400 font-sans">
               Rigorous academic background bridging technology and management.
             </p>
           </motion.div>
@@ -76,13 +76,13 @@ export default function Education() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                <div className="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-brand-charcoal border border-white/10 flex items-center justify-center">
+                <div className="absolute -left-[17px] top-1 w-8 h-8 rounded-full bg-brand-navy border border-white/10 flex items-center justify-center">
                   {edu.icon}
                 </div>
-                <div className="text-sm font-mono text-gray-500 mb-1">{edu.year}</div>
+                <div className="text-sm font-mono text-slate-500 mb-1">{edu.year}</div>
                 <h3 className="text-xl font-display font-bold text-white mb-1">{edu.degree}</h3>
                 <h4 className="text-brand-cyan mb-2">{edu.institute}</h4>
-                <div className="inline-block px-3 py-1 bg-white/5 rounded text-sm text-gray-300">
+                <div className="inline-block px-3 py-1 bg-white/5 rounded text-sm text-slate-300 border border-white/10">
                   Score: {edu.score}
                 </div>
               </motion.div>
@@ -99,10 +99,10 @@ export default function Education() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-white">
               Leadership & <span className="text-brand-cyan">Initiatives.</span>
             </h2>
-            <p className="text-gray-400 font-sans">
+            <p className="text-slate-400 font-sans">
               Taking charge, organizing teams, and driving events to success.
             </p>
           </motion.div>
@@ -111,7 +111,7 @@ export default function Education() {
             {leadership.map((item, index) => (
               <motion.div
                 key={index}
-                className="p-6 rounded-2xl bg-brand-navy/20 border border-white/5 hover:border-brand-purple/30 transition-colors"
+                className="p-6 rounded-2xl bg-brand-navy/50 border border-white/5 hover:border-brand-purple/30 transition-colors"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -128,7 +128,7 @@ export default function Education() {
                     <div className="text-sm text-brand-purple">{item.context} • {item.period}</div>
                   </div>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-slate-400 text-sm leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>

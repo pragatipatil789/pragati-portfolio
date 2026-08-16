@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-black: #FAFAFA; /* Off-white main bg */
-  --color-brand-charcoal: #F1F3F5; /* Light alternating section bg */
-  --color-brand-navy: #FFFFFF; /* White card bg */
+  /* Dark navy-blue theme */
+  --color-brand-black: #0B1121;      /* Deep navy main bg */
+  --color-brand-charcoal: #0F172A;   /* Slightly lighter navy section bg */
+  --color-brand-navy: #1E293B;       /* Card/panel bg */
   
-  --color-brand-blue: #0077B6;
-  --color-brand-purple: #7209B7;
-  --color-brand-cyan: #0096C7; /* Slightly darker cyan for contrast */
-  --color-brand-white: #1A1A1A; /* Dark text */
+  --color-brand-blue: #3B82F6;       /* Vivid blue */
+  --color-brand-purple: #A855F7;     /* Vibrant purple */
+  --color-brand-cyan: #22D3EE;       /* Bright cyan */
+  --color-brand-white: #F1F5F9;      /* Off-white text */
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
@@ -18,15 +19,13 @@
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   overflow-x: hidden;
-  /* Custom cursor setup might need this */
-  /* cursor: none; */ 
 }
 
 /* Lenis smooth scrolling recommended styles */
@@ -48,4 +47,9 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+/* Scroll offset for fixed header */
+html {
+  scroll-padding-top: 80px;
 }

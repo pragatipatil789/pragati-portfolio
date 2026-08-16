@@ -46,7 +46,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
             animate={{ y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
           >
-            Business Consultant • Product Strategist
+            Business Consultant • Product Manager
           </motion.p>
         </div>
 

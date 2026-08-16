@@ -5,12 +5,12 @@ import { Link, Mail, Phone } from "lucide-react";
 
 export default function Contact() {
   return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-center py-32 px-6 overflow-hidden bg-slate-50">
+    <section id="contact" className="relative min-h-[90vh] flex flex-col items-center justify-center py-32 px-6 overflow-hidden bg-brand-charcoal">
       {/* Animated background gradient mesh */}
       <motion.div 
-        className="absolute inset-0 opacity-30 z-0"
+        className="absolute inset-0 opacity-40 z-0"
         style={{
-          background: "radial-gradient(circle at center, rgba(114, 9, 183, 0.4) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(76, 201, 240, 0.4) 0%, transparent 40%)",
+          background: "radial-gradient(circle at center, rgba(168, 85, 247, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.3) 0%, transparent 40%)",
         }}
         animate={{
           backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
@@ -28,42 +28,56 @@ export default function Contact() {
           <p className="text-brand-cyan font-mono text-sm tracking-[0.3em] uppercase mb-6">
             Consulting · Strategy · Product
           </p>
-          <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 text-slate-900">
+          <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 text-white">
             Let&apos;s solve{" "}
             <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">
               what matters next.
             </span>
           </h2>
-          <p className="text-xl text-slate-600 font-sans mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-400 font-sans mb-12 max-w-2xl mx-auto leading-relaxed">
             Actively seeking high-impact consulting and product strategy roles where I can drive transformation, lead cross-functional engagements, and deliver outcomes that shape markets.
           </p>
         </motion.div>
 
         <motion.div 
-          className="flex flex-wrap justify-center gap-6"
+          className="flex flex-wrap justify-center gap-5"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <a href="mailto:pragati.pgdm27g@greatlakes.ed.in" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-black text-white rounded-full font-medium hover:scale-105 transition-transform">
+          <a 
+            href="mailto:pragati.pgdm27g@greatlakes.ed.in" 
+            data-magnetic="true" 
+            className="flex items-center gap-3 px-7 py-4 bg-gradient-to-r from-brand-blue to-brand-cyan text-white rounded-full font-semibold hover:scale-105 transition-transform shadow-lg shadow-brand-cyan/20"
+          >
             <Mail size={20} />
             pragati.pgdm27g@greatlakes.ed.in
           </a>
           
-          <a href="tel:+917756881199" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-brand-black text-white rounded-full font-medium hover:scale-105 transition-transform">
+          <a 
+            href="tel:+917756881199" 
+            data-magnetic="true" 
+            className="flex items-center gap-3 px-7 py-4 bg-gradient-to-r from-brand-purple to-brand-blue text-white rounded-full font-semibold hover:scale-105 transition-transform shadow-lg shadow-brand-purple/20"
+          >
             <Phone size={20} />
             +91 7756881199
           </a>
           
-          <a href="https://www.linkedin.com/in/pragati-patil-b620821b1/" target="_blank" rel="noreferrer" data-magnetic="true" className="flex items-center gap-3 px-8 py-4 bg-[#0077b5] text-white rounded-full font-medium hover:bg-[#005582] transition-colors">
+          <a 
+            href="https://www.linkedin.com/in/pragati-patil-b620821b1/" 
+            target="_blank" 
+            rel="noreferrer" 
+            data-magnetic="true" 
+            className="flex items-center gap-3 px-7 py-4 border-2 border-white/20 text-white rounded-full font-semibold hover:border-brand-cyan/50 hover:bg-white/5 transition-all"
+          >
             <Link size={20} />
             LinkedIn
           </a>
         </motion.div>
       </div>
       
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-sm text-slate-500 font-mono tracking-wider">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-sm text-slate-600 font-mono tracking-wider">
         © {new Date().getFullYear()} PRAGATI PATIL. ALL RIGHTS RESERVED.
       </div>
     </section>
