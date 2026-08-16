@@ -60,7 +60,7 @@ export default function CaseCompetitions() {
   return (
     <section
       id="case-competitions"
-      className="relative py-32 px-6 md:px-12 lg:px-24 bg-brand-charcoal overflow-hidden"
+      className="relative py-32 px-6 md:px-12 lg:px-24 bg-white overflow-hidden"
     >
       {/* Background grid */}
       <div
@@ -84,10 +84,10 @@ export default function CaseCompetitions() {
           <p className="text-brand-cyan font-mono text-sm tracking-[0.3em] uppercase mb-4">
             Competition · Strategy · Case Work
           </p>
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-slate-900">
             Case <span className="text-brand-cyan">Competitions.</span>
           </h2>
-          <p className="text-xl text-slate-400 font-sans max-w-2xl mx-auto">
+          <p className="text-xl text-slate-600 font-sans max-w-2xl mx-auto">
             Real-world business challenges tackled under pressure — structured thinking meets competitive execution.
           </p>
         </motion.div>
@@ -97,7 +97,7 @@ export default function CaseCompetitions() {
           {caseCompetitions.map((comp, index) => (
             <motion.div
               key={index}
-              className={`relative p-8 md:p-10 rounded-3xl bg-brand-navy border ${comp.borderColor} ${comp.glowColor} overflow-hidden flex flex-col gap-6`}
+              className={`relative p-8 md:p-10 rounded-3xl bg-white border border-slate-200 hover:border-brand-blue/30 shadow-sm hover:shadow-md overflow-hidden flex flex-col gap-6`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -106,7 +106,7 @@ export default function CaseCompetitions() {
             >
               {/* Status badge */}
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-400 tracking-wide">
+                <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-xs font-mono text-slate-600 tracking-wide">
                   <Clock size={12} />
                   {comp.status}
                 </span>
@@ -129,10 +129,10 @@ export default function CaseCompetitions() {
                 <p className={`text-xs font-mono tracking-widest uppercase mb-2 ${comp.accentColor}`}>
                   {comp.type}
                 </p>
-                <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-3">
+                <h3 className="text-2xl md:text-3xl font-display font-bold text-slate-900 mb-3">
                   {comp.title}
                 </h3>
-                <p className="text-slate-400 text-base leading-relaxed">
+                <p className="text-slate-600 text-base leading-relaxed">
                   {comp.description}
                 </p>
               </div>
@@ -142,7 +142,7 @@ export default function CaseCompetitions() {
                 {comp.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-slate-400"
+                    className="px-3 py-1 rounded-full text-xs font-medium bg-slate-50 border border-slate-200 text-slate-600"
                   >
                     {tag}
                   </span>
