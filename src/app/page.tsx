@@ -18,7 +18,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <main className="min-h-screen bg-brand-black text-brand-white selection:bg-brand-cyan/30">
+    <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-brand-cyan/20">
       {loading ? (
         <Loader onComplete={() => setLoading(false)} />
       ) : (

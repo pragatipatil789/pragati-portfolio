@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Dark navy-blue theme */
-  --color-brand-black: #0B1121;      /* Deep navy main bg */
-  --color-brand-charcoal: #0F172A;   /* Slightly lighter navy section bg */
-  --color-brand-navy: #1E293B;       /* Card/panel bg */
+  /* Light professional theme */
+  --color-brand-black: #0F172A;      /* Slate-900 for dark text/elements */
+  --color-brand-charcoal: #1E293B;   /* Slate-800 for secondary dark text */
+  --color-brand-navy: #334155;       /* Slate-700 */
   
-  --color-brand-blue: #3B82F6;       /* Vivid blue */
-  --color-brand-purple: #A855F7;     /* Vibrant purple */
-  --color-brand-cyan: #22D3EE;       /* Bright cyan */
-  --color-brand-white: #F1F5F9;      /* Off-white text */
+  --color-brand-blue: #2563EB;       /* Professional Blue */
+  --color-brand-purple: #7C3AED;     /* Professional Purple */
+  --color-brand-cyan: #0891B2;       /* Professional Cyan/Teal */
+  --color-brand-white: #FFFFFF;      /* Pure white */
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
 
-  --color-background: var(--color-brand-black);
-  --color-foreground: var(--color-brand-white);
+  --color-background: #F8FAFC;       /* Slate-50 off-white background */
+  --color-foreground: var(--color-brand-black);
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {

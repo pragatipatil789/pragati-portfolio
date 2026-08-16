@@ -32,13 +32,13 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight text-white">
+            <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight text-slate-900">
               Designing Experiences That <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">Create Business Impact.</span>
             </h1>
           </motion.div>
           
           <motion.p
-            className="text-lg md:text-xl text-slate-400 font-sans max-w-xl leading-relaxed"
+            className="text-lg md:text-xl text-slate-600 font-sans max-w-xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -54,7 +54,7 @@ export default function Hero() {
           >
             <button 
               onClick={() => scrollToSection("journey")}
-              className="px-6 py-3 bg-brand-cyan text-brand-black rounded-full font-semibold flex items-center gap-2 hover:scale-105 transition-transform shadow-lg shadow-brand-cyan/20"
+              className="px-6 py-3 bg-slate-900 text-white rounded-full font-semibold flex items-center gap-2 hover:bg-brand-blue hover:scale-105 transition-all shadow-lg"
               data-magnetic="true"
             >
               Explore My Journey <MoveRight size={18} />
@@ -83,7 +83,7 @@ export default function Hero() {
             }}
           />
           
-          <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/10 bg-brand-navy/50 flex items-center justify-center">
+          <div className="absolute inset-0 rounded-3xl overflow-hidden border border-slate-200 bg-white flex items-center justify-center shadow-2xl">
             <Image 
               src="/profile.jpg" 
               alt="Pragati Patil" 

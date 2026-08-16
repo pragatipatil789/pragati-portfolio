@@ -45,7 +45,7 @@ export default function Philosophy() {
   };
 
   return (
-    <section className="relative py-32 px-6 md:px-12 lg:px-24 overflow-hidden bg-brand-charcoal">
+    <section className="relative py-32 px-6 md:px-12 lg:px-24 overflow-hidden bg-slate-50">
       {/* Background elements */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-cyan/5 rounded-full blur-[120px] pointer-events-none" />
@@ -62,13 +62,13 @@ export default function Philosophy() {
           <p className="text-brand-cyan font-mono text-sm tracking-[0.3em] uppercase mb-6 font-semibold">
             Consulting · Strategy · Product
           </p>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white leading-tight mb-8">
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-slate-900 leading-tight mb-8">
             Let&apos;s solve{" "}
             <span className="bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple bg-clip-text text-transparent">
               what matters.
             </span>
           </h2>
-          <p className="text-xl text-slate-400 font-sans max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-600 font-sans max-w-2xl mx-auto leading-relaxed">
             I bring consulting-grade rigor and product-led execution to every engagement —
             turning ambiguous challenges into clear, high-impact strategies that move organizations forward.
           </p>
@@ -83,7 +83,7 @@ export default function Philosophy() {
               <motion.div
                 key={index}
                 className={`border rounded-2xl overflow-hidden transition-colors duration-300 ${
-                  isActive ? "bg-brand-navy border-brand-cyan/40 shadow-md" : "bg-brand-black border-white/5 hover:border-white/20"
+                  isActive ? "bg-white border-brand-cyan/40 shadow-md" : "bg-white/50 border-slate-200 hover:border-slate-300"
                 }`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -95,17 +95,17 @@ export default function Philosophy() {
                   className="w-full flex items-center justify-between p-6 md:px-8 text-left focus:outline-none"
                 >
                   <div className="flex items-center gap-6">
-                    <div className={`p-3 rounded-xl transition-colors duration-300 ${isActive ? "bg-brand-black" : "bg-transparent"}`}>
+                    <div className={`p-3 rounded-xl transition-colors duration-300 ${isActive ? "bg-slate-50" : "bg-transparent"}`}>
                       {factor.icon}
                     </div>
-                    <h3 className={`font-display font-bold text-xl md:text-2xl transition-colors ${isActive ? "text-white" : "text-slate-400"}`}>
+                    <h3 className={`font-display font-bold text-xl md:text-2xl transition-colors ${isActive ? "text-slate-900" : "text-slate-700"}`}>
                       {factor.title}
                     </h3>
                   </div>
                   <motion.div
                     animate={{ rotate: isActive ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`p-2 rounded-full ${isActive ? "bg-brand-black text-brand-cyan" : "text-slate-500"}`}
+                    className={`p-2 rounded-full ${isActive ? "bg-slate-100 text-brand-cyan" : "text-slate-400"}`}
                   >
                     <ChevronDown size={20} />
                   </motion.div>
@@ -120,7 +120,7 @@ export default function Philosophy() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
                       <div className="px-6 md:px-8 pb-8 pt-2 ml-20">
-                        <p className="text-slate-400 text-lg leading-relaxed">
+                        <p className="text-slate-600 text-lg leading-relaxed">
                           {factor.desc}
                         </p>
                       </div>
@@ -134,7 +134,7 @@ export default function Philosophy() {
 
         {/* Recruiter CTA banner */}
         <motion.div
-          className="relative text-center py-12 px-8 rounded-3xl overflow-hidden border border-white/10 bg-brand-navy shadow-xl"
+          className="relative text-center py-12 px-8 rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-xl"
           initial={{ opacity: 0, scale: 0.97 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -144,7 +144,7 @@ export default function Philosophy() {
           <p className="text-brand-cyan font-mono text-xs tracking-[0.25em] uppercase mb-4 relative z-10 font-bold">
             Ready for High-Impact Engagements
           </p>
-          <p className="text-2xl md:text-3xl font-display font-bold text-white relative z-10 leading-snug">
+          <p className="text-2xl md:text-3xl font-display font-bold text-slate-900 relative z-10 leading-snug">
             Looking for someone who can{" "}
             <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">
               structure ambiguity, drive decisions,

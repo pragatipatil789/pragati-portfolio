@@ -43,9 +43,9 @@ export default function Header() {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-[90] backdrop-blur-xl border-b border-white/[0.06]"
+      className="fixed top-0 left-0 right-0 z-[90] backdrop-blur-xl border-b border-slate-200"
       style={{
-        background: "rgba(11, 17, 33, 0.85)",
+        background: "rgba(255, 255, 255, 0.85)",
       }}
       initial={{ y: -100, opacity: 0 }}
       animate={{
@@ -58,7 +58,7 @@ export default function Header() {
         {/* Logo / Name */}
         <button
           onClick={() => scrollToSection("home")}
-          className="font-display font-bold text-lg tracking-tight text-white hover:text-brand-cyan transition-colors"
+          className="font-display font-bold text-lg tracking-tight text-slate-900 hover:text-brand-cyan transition-colors"
         >
           PP<span className="text-brand-cyan">.</span>
         </button>
@@ -71,14 +71,14 @@ export default function Header() {
               onClick={() => scrollToSection(item.id)}
               className={`relative px-3 py-2 text-sm font-medium transition-colors rounded-lg ${
                 activeSection === item.id
-                  ? "text-brand-cyan"
-                  : "text-slate-400 hover:text-white"
+                  ? "text-brand-blue"
+                  : "text-slate-500 hover:text-slate-900"
               }`}
             >
               {item.label}
               {activeSection === item.id && (
                 <motion.div
-                  className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-[2px] bg-brand-cyan rounded-full"
+                  className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-[2px] bg-brand-blue rounded-full"
                   layoutId="activeTab"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />

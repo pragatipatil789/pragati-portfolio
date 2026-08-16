@@ -171,7 +171,7 @@ export default function About() {
   const nextCard = cards[(activeIndex + 1) % cards.length];
 
   return (
-    <section id="about" className="relative py-32 bg-brand-charcoal overflow-hidden">
+    <section id="about" className="relative py-32 bg-slate-50 overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -183,10 +183,10 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="mb-20 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-white">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-slate-900">
             Beyond the <span className="text-brand-cyan">Resume.</span>
           </h2>
-          <p className="text-xl text-slate-400 font-sans max-w-2xl mx-auto">
+          <p className="text-xl text-slate-600 font-sans max-w-2xl mx-auto">
             I don&apos;t just manage products — I architect strategies and lead with purpose to drive measurable, lasting growth.
           </p>
         </motion.div>
@@ -204,7 +204,7 @@ export default function About() {
           >
             {/* Blurred next card (peek behind) */}
             <div
-              className="absolute inset-0 p-10 md:p-14 rounded-3xl bg-brand-navy/60 border border-white/5 flex flex-col items-center justify-center text-center"
+              className="absolute inset-0 p-10 md:p-14 rounded-3xl bg-white/60 border border-slate-200 flex flex-col items-center justify-center text-center"
               style={{
                 transform: "scale(0.92) translateY(20px)",
                 filter: "blur(4px)",
@@ -230,7 +230,7 @@ export default function About() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="absolute inset-0 p-10 md:p-14 rounded-3xl bg-brand-navy border border-white/10 flex flex-col items-center justify-between text-center"
+                className="absolute inset-0 p-10 md:p-14 rounded-3xl bg-white border border-slate-200 flex flex-col items-center justify-between text-center"
                 style={{
                   boxShadow:
                     "0 0 80px rgba(34,211,238,0.08), 0 0 160px rgba(168,85,247,0.04), 0 20px 60px rgba(0,0,0,0.5)",
@@ -241,7 +241,7 @@ export default function About() {
                 {/* Tag row */}
                 <div className="flex items-center justify-between mb-6 w-full">
                   <motion.span
-                    className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase bg-gradient-to-r ${card.accent} bg-clip-text text-transparent border border-white/10`}
+                    className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase bg-gradient-to-r ${card.accent} bg-clip-text text-transparent border border-slate-200`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.25, duration: 0.4 }}
@@ -279,7 +279,7 @@ export default function About() {
                     {card.title}
                   </motion.h3>
                   <motion.p
-                    className="text-slate-400 font-sans text-lg leading-relaxed max-w-lg"
+                    className="text-slate-600 font-sans text-lg leading-relaxed max-w-lg"
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
@@ -289,7 +289,7 @@ export default function About() {
                 </div>
 
                 {/* Progress bar */}
-                <div className="mt-8 w-full h-[2px] bg-white/10 relative overflow-hidden rounded-full">
+                <div className="mt-8 w-full h-[2px] bg-slate-200 relative overflow-hidden rounded-full">
                   {!isPaused && (
                     <motion.div
                       className={`absolute top-0 left-0 h-full bg-gradient-to-r ${card.accent}`}
@@ -308,7 +308,7 @@ export default function About() {
           <div className="flex items-center gap-6 mt-10">
             <button
               onClick={() => paginate(-1)}
-              className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-500 hover:border-brand-cyan/60 hover:text-brand-cyan hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] transition-all"
+              className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-blue hover:text-brand-blue hover:shadow-md transition-all"
               aria-label="Previous"
             >
               <ChevronLeft size={20} />
@@ -326,7 +326,7 @@ export default function About() {
                   className={`rounded-full transition-all duration-400 ${
                     i === activeIndex
                       ? "w-8 h-2.5 bg-gradient-to-r from-brand-cyan to-brand-purple shadow-[0_0_12px_rgba(34,211,238,0.4)]"
-                      : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
+                      : "w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400"
                   }`}
                   aria-label={`Go to card ${i + 1}`}
                 />
