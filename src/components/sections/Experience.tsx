@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
 
 interface ProjectPhoto {
@@ -44,7 +44,28 @@ const experiences: ExperienceData[] = [
     ],
     metric: "200+ DAU",
     color: "from-brand-blue to-brand-cyan",
-    photos: [],
+    photos: [
+      {
+        src: "/experience/paraheights/class-selection.jpg",
+        caption: "Choose Your Class — Personalized onboarding flow for grade selection (Classes 6–12)",
+      },
+      {
+        src: "/experience/paraheights/subject-selection.jpg",
+        caption: "Subject Discovery & Selection — Interactive multi-subject picker with category badges & popular tags",
+      },
+      {
+        src: "/experience/paraheights/ai-lesson-chat.jpg",
+        caption: "AI Interactive Lesson — Audio-enabled conversational learning interface with real-time pedagogy",
+      },
+      {
+        src: "/experience/paraheights/weekly-leaderboards.jpg",
+        caption: "Gamified Weekly Leaderboard — Competitive league ladders with performance tiers (Promote, Safe, Demote)",
+      },
+      {
+        src: "/experience/paraheights/quick-actions.jpg",
+        caption: "Quick Actions Hub — Centralized navigation sheet for Duels, Rumble, Progress, and Social interactions",
+      },
+    ],
   },
   {
     role: "UI/UX Designer Intern",
@@ -76,42 +97,53 @@ function PhotoPreviewModal({
   const goNext = () => setCurrentIndex((prev) => (prev + 1) % photos.length);
   const goPrev = () => setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [photos.length]);
+
   return (
     <motion.div
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-md"
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/85 backdrop-blur-md p-4 sm:p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
     >
       <motion.div
-        className="relative max-w-4xl w-full mx-6 bg-white rounded-3xl overflow-hidden border border-slate-200"
-        initial={{ scale: 0.85, opacity: 0, y: 30 }}
+        className="relative max-w-md md:max-w-lg w-full bg-slate-900 text-white rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl flex flex-col"
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.85, opacity: 0, y: 30 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/40 flex items-center justify-center text-white hover:bg-black/60 transition-colors"
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 backdrop-blur border border-white/10 flex items-center justify-center text-white/90 hover:text-white hover:bg-black/80 transition-colors"
+          aria-label="Close preview"
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
         {/* Image area */}
-        <div className="relative aspect-video bg-black/20 flex items-center justify-center">
+        <div className="relative h-[480px] sm:h-[540px] bg-slate-950/70 flex items-center justify-center p-4">
           <AnimatePresence mode="wait">
             <motion.img
               key={currentIndex}
               src={photo.src}
               alt={photo.caption}
-              className="max-w-full max-h-full object-contain"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
+              className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl"
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25 }}
             />
           </AnimatePresence>
 
@@ -120,25 +152,27 @@ function PhotoPreviewModal({
             <>
               <button
                 onClick={goPrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 flex items-center justify-center text-white hover:bg-black/60 transition-colors"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur border border-white/10 flex items-center justify-center text-white hover:bg-black/90 transition-all hover:scale-105"
+                aria-label="Previous image"
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={22} />
               </button>
               <button
                 onClick={goNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 flex items-center justify-center text-white hover:bg-black/60 transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur border border-white/10 flex items-center justify-center text-white hover:bg-black/90 transition-all hover:scale-105"
+                aria-label="Next image"
               >
-                <ChevronRight size={20} />
+                <ChevronRight size={22} />
               </button>
             </>
           )}
         </div>
 
         {/* Caption & counter */}
-        <div className="p-6 flex items-center justify-between">
-          <p className="text-slate-600 font-sans text-sm">{photo.caption}</p>
+        <div className="p-5 bg-slate-900 border-t border-slate-800 flex items-center justify-between gap-4">
+          <p className="text-slate-300 font-sans text-xs sm:text-sm leading-relaxed">{photo.caption}</p>
           {photos.length > 1 && (
-            <span className="text-xs font-mono text-slate-500">
+            <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-brand-cyan whitespace-nowrap">
               {currentIndex + 1} / {photos.length}
             </span>
           )}
@@ -159,56 +193,59 @@ function PhotoStrip({
   if (photos.length === 0) {
     return (
       <div className="mt-6 flex items-center gap-3 text-slate-500">
-        <div className="w-16 h-16 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center">
+        <div className="w-14 h-14 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center">
           <ImageIcon size={18} className="text-slate-400" />
         </div>
-        <span className="text-xs font-mono tracking-wide text-slate-400">Projects coming soon</span>
+        <span className="text-xs font-mono tracking-wide text-slate-400">Screens coming soon</span>
       </div>
     );
   }
 
   return (
-    <div className="mt-6 flex items-center gap-3 flex-wrap">
-      {photos.map((photo, i) => (
-        <motion.button
-          key={i}
-          onClick={() => onPhotoClick(i)}
-          className="relative w-16 h-16 rounded-xl overflow-hidden border border-slate-200 hover:border-brand-cyan/60 transition-all group flex-shrink-0"
-          whileHover={{ scale: 1.08, y: -2 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <img
-            src={photo.src}
-            alt={photo.caption}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <motion.div
-              className="opacity-0 group-hover:opacity-100 transition-opacity"
-              initial={false}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+    <div className="mt-6">
+      <div className="flex items-center gap-2 mb-3 text-xs font-mono text-brand-blue/90 font-medium">
+        <ImageIcon size={14} className="text-brand-blue" />
+        <span>Product UI & Features ({photos.length})</span>
+      </div>
+      <div className="flex items-center gap-2.5 flex-wrap">
+        {photos.map((photo, i) => (
+          <motion.button
+            key={i}
+            onClick={() => onPhotoClick(i)}
+            className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-slate-200 hover:border-brand-cyan shadow-sm hover:shadow-md transition-all group flex-shrink-0 bg-slate-900"
+            whileHover={{ scale: 1.08, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            title={photo.caption}
+          >
+            <img
+              src={photo.src}
+              alt={photo.caption}
+              className="w-full h-full object-cover object-top"
+            />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+              <motion.div
+                className="opacity-0 group-hover:opacity-100 transition-opacity text-white"
+                initial={false}
               >
-                <polyline points="15 3 21 3 21 9" />
-                <polyline points="9 21 3 21 3 15" />
-                <line x1="21" y1="3" x2="14" y2="10" />
-                <line x1="3" y1="21" x2="10" y2="14" />
-              </svg>
-            </motion.div>
-          </div>
-        </motion.button>
-      ))}
-      {/* Add more placeholder */}
-      <div className="w-16 h-16 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center opacity-40">
-        <span className="text-xs text-slate-400">+</span>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="15 3 21 3 21 9" />
+                  <polyline points="9 21 3 21 3 15" />
+                  <line x1="21" y1="3" x2="14" y2="10" />
+                  <line x1="3" y1="21" x2="10" y2="14" />
+                </svg>
+              </motion.div>
+            </div>
+          </motion.button>
+        ))}
       </div>
     </div>
   );
