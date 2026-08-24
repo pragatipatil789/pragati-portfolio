@@ -25,9 +25,9 @@ const experiences: ExperienceData[] = [
     company: "KPMG",
     period: "Apr 2026 – May 2026",
     achievements: [
-      "Assessed infrastructure assets across IRR, NPV, and payback period benchmarks to deliver go/no-go investment decisions.",
-      "Analyzed 25-year regional demand across growth and adoption scenarios for commercial viability.",
-      "Structured 550+ cross-functional processes into a comprehensive 6-category workflow taxonomy."
+      "Conducted financial and risk analysis of 2 infrastructure assets using IRR, NPV, DSCR and payback period metrics, benchmarking capital efficiency to support go/no-go investment decisions",
+      "Developed a 25-year demand forecasting model incorporating growth trajectories, penetration rates and adoption curves to assess market sizing, capacity utilization and long-term commercial viability",
+      "Engineered a 6-category workflow taxonomy across 550+ cross-functional processes, conducting a digitization gap analysis to guide SAP S/4HANA automation and process reengineering strategy"
     ],
     metric: "25yr Projections",
     color: "from-brand-purple to-brand-blue",
