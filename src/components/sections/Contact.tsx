@@ -26,14 +26,24 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
         >
           <p className="text-brand-cyan font-mono text-sm tracking-[0.3em] uppercase mb-6">
-            Consulting · Strategy · Product
+            Ready for High-Impact Engagements
           </p>
+
+          {/* Looking for someone + Let's solve merged */}
+          <p className="text-xl md:text-2xl font-display font-semibold text-slate-600 mb-4 max-w-3xl mx-auto leading-relaxed">
+            Looking for someone who can{" "}
+            <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent font-bold">
+              structure ambiguity, drive decisions, and deliver transformation?
+            </span>
+          </p>
+
           <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 text-slate-900">
             Let&apos;s solve{" "}
             <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">
               what matters next.
             </span>
           </h2>
+
           <p className="text-xl text-slate-600 font-sans mb-12 max-w-2xl mx-auto leading-relaxed">
             Actively seeking high-impact consulting and product strategy roles where I can drive transformation, lead cross-functional engagements, and deliver outcomes that shape markets.
           </p>

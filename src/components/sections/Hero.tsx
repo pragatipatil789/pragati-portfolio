@@ -33,7 +33,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight tracking-tight text-slate-900">
-              Designing Experiences That <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">Create Business Impact.</span>
+              From Ambiguity to Impact — <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">Where Strategy Meets Execution.</span>
             </h1>
           </motion.div>
           

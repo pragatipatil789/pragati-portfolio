@@ -40,8 +40,8 @@ const consultingFactors = [
 export default function Philosophy() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
-  const toggleAccordion = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
+  const handleHoverEnter = (index: number) => {
+    setActiveIndex(index);
   };
 
   return (
@@ -91,8 +91,8 @@ export default function Philosophy() {
                 transition={{ duration: 0.4, delay: index * 0.05 }}
               >
                 <button
-                  onClick={() => toggleAccordion(index)}
-                  className="w-full flex items-center justify-between p-6 md:px-8 text-left focus:outline-none"
+                  onMouseEnter={() => handleHoverEnter(index)}
+                  className="w-full flex items-center justify-between p-6 md:px-8 text-left focus:outline-none cursor-default"
                 >
                   <div className="flex items-center gap-6">
                     <div className={`p-3 rounded-xl transition-colors duration-300 ${isActive ? "bg-slate-50" : "bg-transparent"}`}>
@@ -131,31 +131,6 @@ export default function Philosophy() {
             );
           })}
         </div>
-
-        {/* Recruiter CTA banner */}
-        <motion.div
-          className="relative text-center py-12 px-8 rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-xl"
-          initial={{ opacity: 0, scale: 0.97 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(76,201,240,0.05)_0%,_transparent_70%)] pointer-events-none" />
-          <p className="text-brand-cyan font-mono text-xs tracking-[0.25em] uppercase mb-4 relative z-10 font-bold">
-            Ready for High-Impact Engagements
-          </p>
-          <p className="text-2xl md:text-3xl font-display font-bold text-slate-900 relative z-10 leading-snug">
-            Looking for someone who can{" "}
-            <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">
-              structure ambiguity, drive decisions,
-            </span>
-            <br className="hidden md:block" />
-            <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">
-              and deliver transformation?
-            </span>
-            {" "}Let&apos;s connect.
-          </p>
-        </motion.div>
       </div>
     </section>
   );

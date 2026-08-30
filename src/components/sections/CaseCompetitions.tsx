@@ -30,18 +30,18 @@ const caseCompetitions = [
     ),
   },
   {
-    title: "Case Competition II",
-    type: "To Be Updated",
-    status: "Details Coming Soon",
-    rank: "—",
+    title: "The Marketing Showdown 2025",
+    type: "MarkTrix Club — Marketing Strategy Competition",
+    status: "Completed",
+    rank: "6th",
     rankLabel: "Rank",
-    tags: ["Consulting", "Problem Solving"],
+    tags: ["Marketing Strategy", "Brand Positioning", "Consumer Research", "Digital Marketing"],
     gradient: "from-brand-cyan to-brand-blue",
     borderColor: "border-brand-cyan/30",
     glowColor: "shadow-[0_0_40px_rgba(76,201,240,0.10)]",
     accentColor: "text-brand-cyan",
     description:
-      "Details for this case competition will be added shortly. Stay tuned for the full brief, approach, and outcome.",
+      "Developed a strategic growth and turnaround plan covering consumer research, competitor analysis, market evaluation, brand positioning, digital marketing, and implementation planning. The project focused on strengthening brand engagement, driving growth, and building measurable marketing strategies. Proud to have secured 6th rank, demonstrating my ability to translate market insights into practical, impactful business strategies.",
     illustration: (
       <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-20">
         <circle cx="40" cy="40" r="36" stroke="#4CC9F0" strokeWidth="1.5" strokeDasharray="5 3" opacity="0.5" />

@@ -17,6 +17,7 @@ interface ExperienceData {
   metric: string;
   color: string;
   photos: ProjectPhoto[];
+  showPhotos?: boolean;
 }
 
 const experiences: ExperienceData[] = [
@@ -25,22 +26,21 @@ const experiences: ExperienceData[] = [
     company: "KPMG",
     period: "Apr 2026 – May 2026",
     achievements: [
-      "Conducted financial and risk analysis of 2 infrastructure assets using IRR, NPV, DSCR and payback period metrics, benchmarking capital efficiency to support go/no-go investment decisions",
-      "Developed a 25-year demand forecasting model incorporating growth trajectories, penetration rates and adoption curves to assess market sizing, capacity utilization and long-term commercial viability",
-      "Engineered a 6-category workflow taxonomy across 550+ cross-functional processes, conducting a digitization gap analysis to guide SAP S/4HANA automation and process reengineering strategy"
+      "Delivered financial feasibility assessments for infrastructure assets using IRR, NPV, and DSCR metrics to support go/no-go investment decisions.",
+      "Built a 25-year demand forecasting model and engineered a 550+ process workflow taxonomy to guide SAP S/4HANA automation strategy."
     ],
     metric: "25yr Projections",
     color: "from-brand-purple to-brand-blue",
     photos: [],
+    showPhotos: false,
   },
   {
     role: "Junior Product Manager",
     company: "Paraheights",
     period: "Apr 2024 – Jan 2025",
     achievements: [
-      "Led E2E delivery of an AI-driven, gamified EdTech platform, scaling to 200+ daily active users.",
-      "Launched integrated rewards systems resulting in a 10% uplift in user retention.",
-      "Conducted market analysis to proactively integrate emerging technologies and secure industry-leading positioning."
+      "Owned end-to-end delivery of an AI-driven, gamified EdTech platform — scaling from zero to 200+ daily active users.",
+      "Launched integrated reward mechanics that drove a 10% uplift in retention and secured industry-leading positioning."
     ],
     metric: "200+ DAU",
     color: "from-brand-blue to-brand-cyan",
@@ -66,18 +66,19 @@ const experiences: ExperienceData[] = [
         caption: "Quick Actions Hub — Centralized navigation sheet for Duels, Rumble, Progress, and Social interactions",
       },
     ],
+    showPhotos: true,
   },
   {
     role: "UI/UX Designer Intern",
     company: "Paraheights",
     period: "Jan 2023 – Mar 2024",
     achievements: [
-      "Designed high-fidelity wireframes and prototypes, simplifying complex workflows and driving stakeholder alignment.",
-      "Led end-to-end product development of internal tools, significantly improving cross-functional communication."
+      "Crafted high-fidelity wireframes and prototypes that simplified complex workflows, accelerated stakeholder alignment, and drove 100% internal adoption of redesigned tools."
     ],
     metric: "100% Adoption",
     color: "from-brand-cyan to-brand-purple",
     photos: [],
+    showPhotos: false,
   }
 ];
 
@@ -333,13 +334,15 @@ export default function Experience() {
                       ))}
                     </ul>
 
-                    {/* Photo strip */}
-                    <div className={`${index % 2 === 0 ? "md:ml-auto md:flex md:justify-end" : ""}`}>
-                      <PhotoStrip 
-                        photos={exp.photos} 
-                        onPhotoClick={(photoIdx) => openPreview(index, photoIdx)} 
-                      />
-                    </div>
+                    {/* Photo strip — only for experiences with showPhotos: true */}
+                    {exp.showPhotos && (
+                      <div className={`${index % 2 === 0 ? "md:ml-auto md:flex md:justify-end" : ""}`}>
+                        <PhotoStrip 
+                          photos={exp.photos} 
+                          onPhotoClick={(photoIdx) => openPreview(index, photoIdx)} 
+                        />
+                      </div>
+                    )}
                   </div>
                   
                   {/* Metric side */}

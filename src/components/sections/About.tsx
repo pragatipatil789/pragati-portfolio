@@ -1,346 +1,237 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
-const cards = [
+const traits = [
   {
-    title: "Who I Am",
-    illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
-        <circle cx="32" cy="32" r="30" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="4 3"/>
-        <circle cx="32" cy="32" r="4" fill="#22D3EE"/>
-        <line x1="32" y1="32" x2="32" y2="8" stroke="#22D3EE" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="32" y1="32" x2="52" y2="44" stroke="#A855F7" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="32" cy="8" r="3" fill="#A855F7"/>
-        <circle cx="52" cy="44" r="3" fill="#3B82F6"/>
-        <circle cx="12" cy="44" r="3" fill="#22D3EE" opacity="0.6"/>
-        <line x1="32" y1="32" x2="12" y2="44" stroke="#22D3EE" strokeWidth="1" strokeLinecap="round" strokeOpacity="0.6"/>
-      </svg>
-    ),
-    description: "A strategic thinker and product leader operating at the intersection of consulting rigor and design intuition — translating ambiguity into structured, actionable frameworks that drive organizational clarity.",
+    id: "strategist",
+    label: "Strategist",
     accent: "from-brand-cyan to-brand-blue",
-    tag: "Identity",
+    tagline: "Structured Thinking. Clear Outcomes.",
+    body: "I break down complex, ambiguous business problems into structured frameworks — applying MECE logic, hypothesis-led analysis, and scenario modeling to produce recommendations that decision-makers can act on immediately.",
+    stat: "550+ processes structured",
+    icon: "◈",
   },
   {
-    title: "My Journey",
-    illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
-        <path d="M8 48 Q20 20 32 28 Q44 36 56 8" stroke="#22D3EE" strokeWidth="2" strokeLinecap="round" fill="none"/>
-        <circle cx="8" cy="48" r="4" fill="#A855F7"/>
-        <circle cx="32" cy="28" r="4" fill="#3B82F6"/>
-        <circle cx="56" cy="8" r="4" fill="#22D3EE"/>
-        <path d="M52 8 L56 8 L56 12" stroke="#22D3EE" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <rect x="4" y="44" width="8" height="4" rx="1" fill="#A855F7" opacity="0.4"/>
-        <rect x="28" y="24" width="8" height="4" rx="1" fill="#3B82F6" opacity="0.4"/>
-      </svg>
-    ),
-    description: "From structuring enterprise-level workflows at KPMG to scaling EdTech products at Paraheights — every engagement has sharpened my ability to deliver measurable results under real-world complexity.",
-    accent: "from-brand-purple to-brand-cyan",
-    tag: "Experience",
-  },
-  {
-    title: "My Passion",
-    illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
-        <rect x="16" y="8" width="32" height="36" rx="4" stroke="#22D3EE" strokeWidth="1.5"/>
-        <line x1="24" y1="20" x2="40" y2="20" stroke="#22D3EE" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="24" y1="28" x2="40" y2="28" stroke="#A855F7" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="24" y1="36" x2="34" y2="36" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round"/>
-        <rect x="22" y="48" width="20" height="6" rx="2" fill="#22D3EE" opacity="0.3" stroke="#22D3EE" strokeWidth="1"/>
-        <line x1="32" y1="44" x2="32" y2="48" stroke="#22D3EE" strokeWidth="1.5"/>
-      </svg>
-    ),
-    description: "I am driven by transforming unstructured complexity into clear strategic roadmaps — whether through 550+ process taxonomy designs, go/no-go investment analyses, or stakeholder-aligned product roadmaps.",
+    id: "analyst",
+    label: "Analyst",
     accent: "from-brand-blue to-brand-purple",
-    tag: "Drive",
+    tagline: "Data-Validated. Evidence-Led.",
+    body: "From IRR & NPV modeling to demand forecasting across 25-year horizons, I ensure every recommendation is anchored in quantitative reality — not just strategic intuition.",
+    stat: "25-year demand models built",
+    icon: "◉",
   },
   {
-    title: "How I Think",
-    illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
-        <rect x="8" y="40" width="8" height="16" rx="1" fill="#A855F7" opacity="0.7"/>
-        <rect x="20" y="28" width="8" height="28" rx="1" fill="#3B82F6" opacity="0.7"/>
-        <rect x="32" y="20" width="8" height="36" rx="1" fill="#22D3EE" opacity="0.7"/>
-        <rect x="44" y="10" width="8" height="46" rx="1" fill="#22D3EE"/>
-        <polyline points="8,38 20,26 32,18 44,8" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-        <circle cx="44" cy="8" r="3" fill="white"/>
-      </svg>
-    ),
-    description: "Hypothesis-led and data-validated. I apply consulting frameworks — IRR, NPV, scenario modeling — alongside design thinking and regression analysis to generate evidence-based, stakeholder-ready recommendations.",
+    id: "builder",
+    label: "Builder",
+    accent: "from-brand-purple to-brand-cyan",
+    tagline: "Ideas to Execution. End-to-End.",
+    body: "I have led full product lifecycles — from ideation and UX design to scaled deployment, hitting 200+ daily active users and driving a 10% uplift in retention through integrated reward systems.",
+    stat: "200+ daily active users scaled",
+    icon: "◍",
+  },
+  {
+    id: "communicator",
+    label: "Communicator",
     accent: "from-brand-cyan to-brand-purple",
-    tag: "Methodology",
-  },
-  {
-    title: "What Drives Me",
-    illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
-        <circle cx="32" cy="32" r="20" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="3 2"/>
-        <circle cx="32" cy="32" r="12" stroke="#A855F7" strokeWidth="1.5"/>
-        <circle cx="32" cy="32" r="5" fill="#22D3EE"/>
-        <path d="M32 12 L34 20 L32 18 L30 20 Z" fill="#22D3EE"/>
-        <path d="M52 32 L44 30 L46 32 L44 34 Z" fill="#22D3EE"/>
-        <path d="M32 52 L30 44 L32 46 L34 44 Z" fill="#A855F7"/>
-        <path d="M12 32 L20 34 L18 32 L20 30 Z" fill="#A855F7"/>
-      </svg>
-    ),
-    description: "Impact at scale. Whether advising on large-scale infrastructure feasibility or retaining 200+ daily active users, I am motivated by strategic decisions that matter and product solutions that last.",
-    accent: "from-brand-purple to-brand-blue",
-    tag: "Mission",
-  },
-  {
-    title: "Career Vision",
-    illustration: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
-        <circle cx="32" cy="16" r="8" stroke="#22D3EE" strokeWidth="1.5"/>
-        <circle cx="12" cy="48" r="6" stroke="#A855F7" strokeWidth="1.5"/>
-        <circle cx="52" cy="48" r="6" stroke="#3B82F6" strokeWidth="1.5"/>
-        <line x1="26" y1="22" x2="16" y2="42" stroke="#22D3EE" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="38" y1="22" x2="48" y2="42" stroke="#22D3EE" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="18" y1="48" x2="46" y2="48" stroke="#A855F7" strokeWidth="1" strokeLinecap="round" strokeDasharray="3 2"/>
-        <circle cx="32" cy="16" r="3" fill="#22D3EE"/>
-      </svg>
-    ),
-    description: "To lead strategy and product functions at the nexus of consulting and technology — building organizations that are adaptive, data-driven, and design-forward in an AI-powered world.",
-    accent: "from-brand-blue to-brand-cyan",
-    tag: "Vision",
+    tagline: "Translating Complexity into Clarity.",
+    body: "I bridge the gap between technical rigour and boardroom language — crafting stakeholder-ready narratives, executive presentations, and cross-functional alignment frameworks that accelerate decisions.",
+    stat: "Stakeholder-ready deliverables",
+    icon: "◎",
   },
 ];
 
-// Card pop animation variants
-const cardVariants = {
-  enter: (direction: number) => ({
-    scale: 0.3,
-    opacity: 0,
-    rotateY: direction > 0 ? 25 : -25,
-    rotateX: 8,
-    y: 80,
-    filter: "blur(10px)",
-  }),
-  center: {
-    scale: 1,
-    opacity: 1,
-    rotateY: 0,
-    rotateX: 0,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      type: "spring" as const,
-      stiffness: 200,
-      damping: 22,
-      mass: 1,
-      duration: 0.7,
-    },
-  },
-  exit: (direction: number) => ({
-    scale: 0.6,
-    opacity: 0,
-    rotateY: direction > 0 ? -20 : 20,
-    rotateX: -5,
-    y: -40,
-    filter: "blur(6px)",
-    transition: {
-      duration: 0.35,
-      ease: "easeIn" as const,
-    },
-  }),
-};
-
 export default function About() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const directionRef = useRef(0);
-
-  const paginate = (dir: number) => {
-    directionRef.current = dir;
-    setDirection(dir);
-    setActiveIndex((prev) => (prev + dir + cards.length) % cards.length);
-  };
-
-  // Auto-rotate every 2.5 seconds
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => paginate(1), 2500);
-    return () => clearInterval(timer);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex, isPaused]);
-
-  const card = cards[activeIndex];
-  const nextCard = cards[(activeIndex + 1) % cards.length];
+  const [active, setActive] = useState(0);
+  const current = traits[active];
 
   return (
-    <section id="about" className="relative py-32 bg-slate-50 overflow-hidden">
+    <section id="about" className="relative py-32 overflow-hidden bg-slate-50">
+      {/* Subtle grid texture */}
+      <div
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0,0,0,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.8) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
+
       {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-blue/8 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
+        {/* — SECTION LABEL — */}
+        <motion.p
+          className="text-brand-cyan font-mono text-sm tracking-[0.3em] uppercase mb-6 font-semibold text-center"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-slate-900">
-            Beyond the <span className="text-brand-cyan">Resume.</span>
+          Identity · Approach · Mindset
+        </motion.p>
+
+        {/* — HEADLINE — */}
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-5xl md:text-7xl font-display font-black leading-[1.05] tracking-tighter text-slate-900 mb-4">
+            Beyond the{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10 bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple bg-clip-text text-transparent">
+                Resume.
+              </span>
+              <motion.span
+                className="absolute bottom-1 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-cyan to-brand-purple rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                style={{ originX: 0 }}
+              />
+            </span>
           </h2>
-          <p className="text-xl text-slate-600 font-sans max-w-2xl mx-auto">
-            I don&apos;t just manage products — I architect strategies and lead with purpose to drive measurable, lasting growth.
+          <p className="text-lg text-slate-500 font-sans max-w-xl mx-auto mt-4">
+            The credentials are a starting point. Here&apos;s what actually defines how I work.
           </p>
         </motion.div>
 
-        {/* Card area with blurred peek */}
-        <div
-          className="relative flex flex-col items-center"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Card container with 3D perspective */}
-          <div
-            className="relative w-full max-w-2xl mx-auto overflow-visible"
-            style={{ perspective: "1200px", minHeight: 420 }}
+        {/* — MAIN PANEL — */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-10 items-start">
+          {/* LEFT — Trait Selector */}
+          <motion.div
+            className="flex flex-col gap-3"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
           >
-            {/* Blurred next card (peek behind) */}
-            <div
-              className="absolute inset-0 p-10 md:p-14 rounded-3xl bg-white/60 border border-slate-200 flex flex-col items-center justify-center text-center"
-              style={{
-                transform: "scale(0.92) translateY(20px)",
-                filter: "blur(4px)",
-                opacity: 0.4,
-                zIndex: 0,
-              }}
-            >
-              <div className="mb-4">{nextCard.illustration}</div>
-              <h3 className={`text-2xl font-display font-bold mb-3 bg-gradient-to-r ${nextCard.accent} bg-clip-text text-transparent`}>
-                {nextCard.title}
-              </h3>
-              <p className="text-slate-500 font-sans text-sm leading-relaxed max-w-md">
-                {nextCard.description.slice(0, 80)}...
-              </p>
-            </div>
-
-            {/* Active card */}
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={activeIndex}
-                custom={direction}
-                variants={cardVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="absolute inset-0 p-10 md:p-14 rounded-3xl bg-white border border-slate-200 flex flex-col items-center justify-between text-center"
-                style={{
-                  boxShadow:
-                    "0 0 80px rgba(34,211,238,0.08), 0 0 160px rgba(168,85,247,0.04), 0 20px 60px rgba(0,0,0,0.5)",
-                  transformStyle: "preserve-3d",
-                  zIndex: 1,
-                }}
+            {traits.map((trait, i) => (
+              <button
+                key={trait.id}
+                onClick={() => setActive(i)}
+                className={`relative group flex items-center gap-5 px-6 py-5 rounded-2xl text-left transition-all duration-300 border ${
+                  active === i
+                    ? "bg-white border-brand-blue/30 shadow-lg shadow-brand-blue/5"
+                    : "bg-white/50 border-slate-200 hover:bg-white hover:border-slate-300 hover:shadow-sm"
+                }`}
               >
-                {/* Tag row */}
-                <div className="flex items-center justify-between mb-6 w-full">
-                  <motion.span
-                    className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase bg-gradient-to-r ${card.accent} bg-clip-text text-transparent border border-slate-200`}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.25, duration: 0.4 }}
-                  >
-                    {card.tag}
-                  </motion.span>
-                  <motion.span
-                    className="text-xs text-slate-500 font-mono"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.25, duration: 0.4 }}
-                  >
-                    {String(activeIndex + 1).padStart(2, "0")} / {String(cards.length).padStart(2, "0")}
-                  </motion.span>
-                </div>
-
-                {/* Illustration — centered */}
+                {/* Active indicator bar */}
                 <motion.div
-                  className="mb-6 flex justify-center"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.15, type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  {card.illustration}
-                </motion.div>
+                  className={`absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl bg-gradient-to-b ${trait.accent} transition-opacity duration-300`}
+                  animate={{ opacity: active === i ? 1 : 0 }}
+                />
 
-                {/* Text content — centered */}
-                <div className="flex flex-col items-center">
-                  <motion.h3
-                    className={`text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r ${card.accent} bg-clip-text text-transparent`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, duration: 0.5 }}
+                <span
+                  className={`text-3xl font-mono transition-colors duration-300 ${
+                    active === i ? "text-brand-cyan" : "text-slate-300"
+                  }`}
+                >
+                  {trait.icon}
+                </span>
+                <div>
+                  <span
+                    className={`block font-display font-bold text-xl transition-colors duration-300 ${
+                      active === i ? "text-slate-900" : "text-slate-500"
+                    }`}
                   >
-                    {card.title}
-                  </motion.h3>
-                  <motion.p
-                    className="text-slate-600 font-sans text-lg leading-relaxed max-w-lg"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.5 }}
-                  >
-                    {card.description}
-                  </motion.p>
+                    {trait.label}
+                  </span>
+                  {active === i && (
+                    <motion.span
+                      className="block text-xs font-mono text-brand-cyan mt-0.5 tracking-wide"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {trait.tagline}
+                    </motion.span>
+                  )}
+                </div>
+              </button>
+            ))}
+          </motion.div>
+
+          {/* RIGHT — Detail Panel */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.id}
+                initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="relative rounded-3xl bg-white border border-slate-200 p-10 md:p-14 overflow-hidden shadow-xl shadow-slate-100"
+              >
+                {/* Gradient accent corner */}
+                <div
+                  className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl ${current.accent} opacity-[0.06] rounded-bl-[80px] pointer-events-none`}
+                />
+                <div
+                  className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${current.accent}`}
+                />
+
+                {/* Large decorative icon */}
+                <div
+                  className={`text-8xl font-mono bg-gradient-to-r ${current.accent} bg-clip-text text-transparent mb-8 leading-none`}
+                >
+                  {current.icon}
                 </div>
 
-                {/* Progress bar */}
-                <div className="mt-8 w-full h-[2px] bg-slate-200 relative overflow-hidden rounded-full">
-                  {!isPaused && (
-                    <motion.div
-                      className={`absolute top-0 left-0 h-full bg-gradient-to-r ${card.accent}`}
-                      initial={{ width: "0%" }}
-                      animate={{ width: "100%" }}
-                      key={`progress-${activeIndex}`}
-                      transition={{ duration: 2.5, ease: "linear" }}
+                {/* Tagline */}
+                <p
+                  className={`text-xs font-mono tracking-[0.3em] uppercase mb-4 font-bold bg-gradient-to-r ${current.accent} bg-clip-text text-transparent`}
+                >
+                  {current.tagline}
+                </p>
+
+                {/* Title */}
+                <h3 className="text-4xl md:text-5xl font-display font-black text-slate-900 mb-6 leading-tight">
+                  {current.label}
+                </h3>
+
+                {/* Body */}
+                <p className="text-slate-600 text-lg leading-relaxed mb-8 max-w-lg">
+                  {current.body}
+                </p>
+
+                {/* Stat chip */}
+                <div
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r ${current.accent} text-white text-sm font-semibold shadow-sm`}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/70 inline-block" />
+                  {current.stat}
+                </div>
+
+                {/* Progress dots */}
+                <div className="flex items-center gap-2 mt-10">
+                  {traits.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActive(i)}
+                      className={`rounded-full transition-all duration-300 ${
+                        i === active
+                          ? "w-8 h-2 bg-gradient-to-r from-brand-cyan to-brand-purple"
+                          : "w-2 h-2 bg-slate-200 hover:bg-slate-300"
+                      }`}
+                      aria-label={`View ${traits[i].label}`}
                     />
-                  )}
+                  ))}
                 </div>
               </motion.div>
             </AnimatePresence>
-          </div>
-
-          {/* Controls */}
-          <div className="flex items-center gap-6 mt-10">
-            <button
-              onClick={() => paginate(-1)}
-              className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-blue hover:text-brand-blue hover:shadow-md transition-all"
-              aria-label="Previous"
-            >
-              <ChevronLeft size={20} />
-            </button>
-
-            {/* Dot indicators */}
-            <div className="flex items-center gap-2.5">
-              {cards.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => {
-                    setDirection(i > activeIndex ? 1 : -1);
-                    setActiveIndex(i);
-                  }}
-                  className={`rounded-full transition-all duration-400 ${
-                    i === activeIndex
-                      ? "w-8 h-2.5 bg-gradient-to-r from-brand-cyan to-brand-purple shadow-[0_0_12px_rgba(34,211,238,0.4)]"
-                      : "w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400"
-                  }`}
-                  aria-label={`Go to card ${i + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={() => paginate(1)}
-              className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-500 hover:border-brand-cyan/60 hover:text-brand-cyan hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] transition-all"
-              aria-label="Next"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

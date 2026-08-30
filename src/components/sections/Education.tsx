@@ -35,13 +35,6 @@ const leadership = [
     description: "Handpicked to lead the girl's troop for the Republic Day March Past.",
     icon: <Award size={20} className="text-yellow-400" />
   },
-  {
-    role: "Logistics Coordinator",
-    context: "Sapience Management Conclave",
-    period: "2019",
-    description: "Ensured smooth execution of the flagship management conclave.",
-    icon: <Users size={20} className="text-green-400" />
-  }
 ];
 
 export default function Education() {
@@ -58,10 +51,10 @@ export default function Education() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-white">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-slate-900">
               Academic <span className="text-brand-purple">Foundation.</span>
             </h2>
-            <p className="text-slate-400 font-sans">
+            <p className="text-slate-500 font-sans">
               Rigorous academic background bridging technology and management.
             </p>
           </motion.div>

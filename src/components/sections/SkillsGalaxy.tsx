@@ -166,7 +166,7 @@ export default function SkillsGalaxy() {
             Core <span className="bg-gradient-to-r from-brand-cyan to-brand-purple bg-clip-text text-transparent">Competencies.</span>
           </h2>
           <p className="text-xl text-slate-400 font-sans max-w-2xl mx-auto">
-            A structured breakdown of my expertise across strategy, product, and leadership — engineered for high-impact execution.
+            A structured breakdown of my expertise across strategy, product, and leadership engineered for high-impact execution.
           </p>
         </motion.div>
 
