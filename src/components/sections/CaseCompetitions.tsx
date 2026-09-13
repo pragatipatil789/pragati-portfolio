@@ -15,8 +15,10 @@ const caseCompetitions = [
     borderColor: "border-brand-purple/30",
     glowColor: "shadow-[0_0_40px_rgba(114,9,183,0.12)]",
     accentColor: "text-brand-purple",
-    description:
-      "An inter-college case competition exploring economic parity challenges. Full case details and solution deck to be added.",
+    description: "An inter-college case competition exploring economic parity challenges.",
+    analysis: "Evaluated core economic parity challenges and market disparities to identify key areas for intervention.",
+    recommendation: "Formulated strategic solutions to bridge the identified gaps (full solution deck to be added).",
+    impact: "Secured 4th rank, showcasing structured problem-solving and strategic thinking.",
     illustration: (
       <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-20">
         <circle cx="40" cy="40" r="36" stroke="#7209B7" strokeWidth="1.5" strokeDasharray="5 3" opacity="0.5" />
@@ -40,8 +42,10 @@ const caseCompetitions = [
     borderColor: "border-brand-cyan/30",
     glowColor: "shadow-[0_0_40px_rgba(76,201,240,0.10)]",
     accentColor: "text-brand-cyan",
-    description:
-      "Developed a strategic growth and turnaround plan covering consumer research, competitor analysis, market evaluation, brand positioning, digital marketing, and implementation planning. The project focused on strengthening brand engagement, driving growth, and building measurable marketing strategies. Proud to have secured 6th rank, demonstrating my ability to translate market insights into practical, impactful business strategies.",
+    description: "Developed a strategic growth and turnaround plan for a complex business challenge.",
+    analysis: "Conducted comprehensive consumer research, competitor analysis, and market evaluation to identify growth opportunities.",
+    recommendation: "Proposed strategies for brand positioning, digital marketing, and an actionable implementation plan to strengthen brand engagement.",
+    impact: "Secured 6th rank overall, demonstrating the ability to translate market insights into practical, impactful business strategies.",
     illustration: (
       <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-20">
         <circle cx="40" cy="40" r="36" stroke="#4CC9F0" strokeWidth="1.5" strokeDasharray="5 3" opacity="0.5" />
@@ -125,16 +129,37 @@ export default function CaseCompetitions() {
               <div className="opacity-80">{comp.illustration}</div>
 
               {/* Content */}
-              <div>
+              <div className="flex-grow">
                 <p className={`text-xs font-mono tracking-widest uppercase mb-2 ${comp.accentColor}`}>
                   {comp.type}
                 </p>
                 <h3 className="text-2xl md:text-3xl font-display font-bold text-slate-900 mb-3">
                   {comp.title}
                 </h3>
-                <p className="text-slate-600 text-base leading-relaxed">
+                <p className="text-slate-600 text-base leading-relaxed mb-5">
                   {comp.description}
                 </p>
+                
+                <div className="flex flex-col gap-4 mt-2">
+                  {comp.analysis && (
+                    <div>
+                      <h4 className={`text-xs font-bold uppercase tracking-wider ${comp.accentColor}`}>Analysis</h4>
+                      <p className="text-sm text-slate-600 leading-relaxed mt-1">{comp.analysis}</p>
+                    </div>
+                  )}
+                  {comp.recommendation && (
+                    <div>
+                      <h4 className={`text-xs font-bold uppercase tracking-wider ${comp.accentColor}`}>Recommendation</h4>
+                      <p className="text-sm text-slate-600 leading-relaxed mt-1">{comp.recommendation}</p>
+                    </div>
+                  )}
+                  {comp.impact && (
+                    <div>
+                      <h4 className={`text-xs font-bold uppercase tracking-wider ${comp.accentColor}`}>Impact</h4>
+                      <p className="text-sm text-slate-600 leading-relaxed mt-1">{comp.impact}</p>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Tags */}
