@@ -6,19 +6,23 @@ import { Trophy, Clock } from "lucide-react";
 const caseCompetitions = [
   {
     title: "The Power Parity",
-    type: "Inter-College Case Competition",
-    status: "Details Coming Soon",
+    type: "Inter-College Case Competition — Cost Reduction & Profitability",
+    status: "Completed",
     rank: "4th",
     rankLabel: "Rank",
-    tags: ["Strategy", "Market Analysis", "Business Case"],
+    tags: ["Cost Reduction", "Operations Strategy", "Capacity Benchmarking", "Profitability"],
     gradient: "from-brand-purple to-brand-blue",
     borderColor: "border-brand-purple/30",
     glowColor: "shadow-[0_0_40px_rgba(114,9,183,0.12)]",
     accentColor: "text-brand-purple",
-    description: "An inter-college case competition exploring economic parity challenges.",
-    analysis: "Evaluated core economic parity challenges and market disparities to identify key areas for intervention.",
-    recommendation: "Formulated strategic solutions to bridge the identified gaps (full solution deck to be added).",
-    impact: "Secured 4th rank, showcasing structured problem-solving and strategic thinking.",
+    description:
+      "Benchmarked an Indian beer manufacturer against global competitors to uncover root causes behind higher cost structures and devise a turnaround strategy.",
+    analysis:
+      "Deconstructed cost drivers across the value chain to isolate processing bottlenecks. Identified that while all 3 plants ran at 100% capacity utilization (30k bottles/plant vs. global benchmark of 50k–80k), machine throughput was constrained due to import bans on advanced foreign technology.",
+    recommendation:
+      "Formulated a 3-tiered roadmap: (1) Short-term: source equivalent high-capacity machinery from unrestricted international vendors; (2) Medium-term: regulatory engagement on import relaxations; (3) Long-term: domestic technology transfer and indigenous manufacturing licenses.",
+    impact:
+      "Secured 4th rank by presenting a structured MECE cost breakdown, machine-level efficiency analytics, and an actionable multi-horizon operational strategy.",
     illustration: (
       <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-20">
         <circle cx="40" cy="40" r="36" stroke="#7209B7" strokeWidth="1.5" strokeDasharray="5 3" opacity="0.5" />
